@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wdb" id="1">
+         <top_modules>
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="395000fs"></ZoomStartTime>
+      <ZoomEndTime time="1395001fs"></ZoomEndTime>
+      <Cursor1Time time="720000fs"></Cursor1Time>
+   </zoom_setting>
+   <WVObjectSize size="6" />
+   <wave_markers>
+   </wave_markers>
+   <wvobject type="logic" fp_name="block_design_0_i/axi_gpio_0_ip2intc_irpt">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="ElementShortName">block_design_0_i/axi_gpio_0_ip2intc_irpt</obj_property>
+      <obj_property name="ObjectShortName">axi_gpio_0_ip2intc_irpt</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="block_design_0_i/axi_vdma_0_mm2s_introut">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="ElementShortName">block_design_0_i/axi_vdma_0_mm2s_introut</obj_property>
+      <obj_property name="ObjectShortName">axi_vdma_0_mm2s_introut</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="block_design_0_i/axi_vdma_1_mm2s_introut">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="ElementShortName">block_design_0_i/axi_vdma_1_mm2s_introut</obj_property>
+      <obj_property name="ObjectShortName">axi_vdma_1_mm2s_introut</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="block_design_0_i/axi_vdma_1_s2mm_introut">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="ElementShortName">block_design_0_i/axi_vdma_1_s2mm_introut</obj_property>
+      <obj_property name="ObjectShortName">axi_vdma_1_s2mm_introut</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="block_design_0_i/filt_0_interrupt">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="ElementShortName">block_design_0_i/filt_0_interrupt</obj_property>
+      <obj_property name="ObjectShortName">filt_0_interrupt</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="block_design_0_i/mm2s_fsync">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">block_design_0_i/mm2s_fsync</obj_property>
+      <obj_property name="ObjectShortName">mm2s_fsync</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+   </wvobject>
+</wave_config>

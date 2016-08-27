@@ -1,0 +1,20 @@
+#ifndef FILT_VDMA_H_
+#define FILT_VDMA_H_
+
+#include "xfilt.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+	typedef struct
+	{
+		XFilt filt_obj;
+	}
+	filtvdma;
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* FILT_VDMA_H_ */

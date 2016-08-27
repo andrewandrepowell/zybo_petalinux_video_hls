@@ -1,0 +1,292 @@
+
+
+================================================================
+== Vivado HLS Report for 'filt_Merge_240_320_0_6144_s'
+================================================================
+* Date:           Fri Aug 26 09:20:23 2016
+
+* Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
+* Project:        filt_hls_proj
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z010clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  20.00|      9.26|        2.50|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-------+-------+-------+-------+---------+
+    |    Latency    |    Interval   | Pipeline|
+    |  min  |  max  |  min  |  max  |   Type  |
+    +-------+-------+-------+-------+---------+
+    |  77521|  77521|  77521|  77521|   none  |
+    +-------+-------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+-------+-------+----------+-----------+-----------+------+----------+
+        |               |    Latency    | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |  min  |  max  |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+-------+-------+----------+-----------+-----------+------+----------+
+        |- loop_height  |  77520|  77520|       323|          -|          -|   240|    no    |
+        | + loop_width  |    320|    320|         2|          1|          1|   320|    yes   |
+        +---------------+-------+-------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 5
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 3 4 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!exitcond2)
+3 --> 
+	5  / (exitcond)
+	4  / (!exitcond)
+4 --> 
+	3  / true
+5 --> 
+	2  / true
+* FSM state operations: 
+
+ <State 1>: 1.57ns
+ST_1: stg_6 [1/1] 0.00ns
+.preheader.preheader:0  call void (...)* @_ssdm_op_SpecInterface(i8* %src2_data_stream_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_7 [1/1] 0.00ns
+.preheader.preheader:1  call void (...)* @_ssdm_op_SpecInterface(i8* %src1_data_stream_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_8 [1/1] 0.00ns
+.preheader.preheader:2  call void (...)* @_ssdm_op_SpecInterface(i8* %src0_data_stream_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_9 [1/1] 0.00ns
+.preheader.preheader:3  call void (...)* @_ssdm_op_SpecInterface(i8* %src3_data_stream_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_10 [1/1] 0.00ns
+.preheader.preheader:4  call void (...)* @_ssdm_op_SpecInterface(i8* %dst_data_stream_3_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_11 [1/1] 0.00ns
+.preheader.preheader:5  call void (...)* @_ssdm_op_SpecInterface(i8* %dst_data_stream_2_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_12 [1/1] 0.00ns
+.preheader.preheader:6  call void (...)* @_ssdm_op_SpecInterface(i8* %dst_data_stream_1_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_13 [1/1] 0.00ns
+.preheader.preheader:7  call void (...)* @_ssdm_op_SpecInterface(i8* %dst_data_stream_0_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_14 [1/1] 1.57ns
+.preheader.preheader:8  br label %.preheader
+
+
+ <State 2>: 3.37ns
+ST_2: p_s [1/1] 0.00ns
+.preheader:0  %p_s = phi i8 [ %i_V, %2 ], [ 0, %.preheader.preheader ]
+
+ST_2: exitcond2 [1/1] 2.00ns
+.preheader:1  %exitcond2 = icmp eq i8 %p_s, -16
+
+ST_2: stg_17 [1/1] 0.00ns
+.preheader:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i64 240, i64 240, i64 240)
+
+ST_2: i_V [1/1] 1.72ns
+.preheader:3  %i_V = add i8 %p_s, 1
+
+ST_2: stg_19 [1/1] 0.00ns
+.preheader:4  br i1 %exitcond2, label %3, label %0
+
+ST_2: stg_20 [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecLoopName([12 x i8]* @p_str1816) nounwind
+
+ST_2: tmp [1/1] 0.00ns
+:1  %tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str1816)
+
+ST_2: stg_22 [1/1] 1.57ns
+:2  br label %1
+
+ST_2: stg_23 [1/1] 0.00ns
+:0  ret void
+
+
+ <State 3>: 2.03ns
+ST_3: p_1 [1/1] 0.00ns
+:0  %p_1 = phi i9 [ 0, %0 ], [ %j_V, %"operator<<.exit" ]
+
+ST_3: exitcond [1/1] 2.03ns
+:1  %exitcond = icmp eq i9 %p_1, -192
+
+ST_3: stg_26 [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i64 320, i64 320, i64 320)
+
+ST_3: j_V [1/1] 1.84ns
+:3  %j_V = add i9 %p_1, 1
+
+ST_3: stg_28 [1/1] 0.00ns
+:4  br i1 %exitcond, label %2, label %"operator<<.exit"
+
+
+ <State 4>: 9.26ns
+ST_4: stg_29 [1/1] 0.00ns
+operator<<.exit:0  call void (...)* @_ssdm_op_SpecLoopName([11 x i8]* @p_str1817) nounwind
+
+ST_4: tmp_s [1/1] 0.00ns
+operator<<.exit:1  %tmp_s = call i32 (...)* @_ssdm_op_SpecRegionBegin([11 x i8]* @p_str1817)
+
+ST_4: stg_31 [1/1] 0.00ns
+operator<<.exit:2  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1807) nounwind
+
+ST_4: tmp_45 [1/1] 0.00ns
+operator<<.exit:3  %tmp_45 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str1848)
+
+ST_4: stg_33 [1/1] 0.00ns
+operator<<.exit:4  call void (...)* @_ssdm_op_SpecProtocol(i32 0, [1 x i8]* @p_str1807) nounwind
+
+ST_4: tmp_96 [1/1] 4.63ns
+operator<<.exit:5  %tmp_96 = call i8 @_ssdm_op_Read.ap_fifo.volatile.i8P(i8* %src0_data_stream_V)
+
+ST_4: empty [1/1] 0.00ns
+operator<<.exit:6  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str1848, i32 %tmp_45)
+
+ST_4: tmp_46 [1/1] 0.00ns
+operator<<.exit:7  %tmp_46 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str1848)
+
+ST_4: stg_37 [1/1] 0.00ns
+operator<<.exit:8  call void (...)* @_ssdm_op_SpecProtocol(i32 0, [1 x i8]* @p_str1807) nounwind
+
+ST_4: tmp_97 [1/1] 4.63ns
+operator<<.exit:9  %tmp_97 = call i8 @_ssdm_op_Read.ap_fifo.volatile.i8P(i8* %src1_data_stream_V)
+
+ST_4: empty_123 [1/1] 0.00ns
+operator<<.exit:10  %empty_123 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str1848, i32 %tmp_46)
+
+ST_4: tmp_47 [1/1] 0.00ns
+operator<<.exit:11  %tmp_47 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str1848)
+
+ST_4: stg_41 [1/1] 0.00ns
+operator<<.exit:12  call void (...)* @_ssdm_op_SpecProtocol(i32 0, [1 x i8]* @p_str1807) nounwind
+
+ST_4: tmp_98 [1/1] 4.63ns
+operator<<.exit:13  %tmp_98 = call i8 @_ssdm_op_Read.ap_fifo.volatile.i8P(i8* %src2_data_stream_V)
+
+ST_4: empty_124 [1/1] 0.00ns
+operator<<.exit:14  %empty_124 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str1848, i32 %tmp_47)
+
+ST_4: tmp_48 [1/1] 0.00ns
+operator<<.exit:15  %tmp_48 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str1848)
+
+ST_4: stg_45 [1/1] 0.00ns
+operator<<.exit:16  call void (...)* @_ssdm_op_SpecProtocol(i32 0, [1 x i8]* @p_str1807) nounwind
+
+ST_4: tmp_99 [1/1] 4.63ns
+operator<<.exit:17  %tmp_99 = call i8 @_ssdm_op_Read.ap_fifo.volatile.i8P(i8* %src3_data_stream_V)
+
+ST_4: empty_125 [1/1] 0.00ns
+operator<<.exit:18  %empty_125 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str1848, i32 %tmp_48)
+
+ST_4: tmp_49 [1/1] 0.00ns
+operator<<.exit:19  %tmp_49 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str1846)
+
+ST_4: stg_49 [1/1] 0.00ns
+operator<<.exit:20  call void (...)* @_ssdm_op_SpecProtocol(i32 0, [1 x i8]* @p_str1807) nounwind
+
+ST_4: stg_50 [1/1] 4.63ns
+operator<<.exit:21  call void @_ssdm_op_Write.ap_fifo.volatile.i8P(i8* %dst_data_stream_0_V, i8 %tmp_96)
+
+ST_4: stg_51 [1/1] 4.63ns
+operator<<.exit:22  call void @_ssdm_op_Write.ap_fifo.volatile.i8P(i8* %dst_data_stream_1_V, i8 %tmp_97)
+
+ST_4: stg_52 [1/1] 4.63ns
+operator<<.exit:23  call void @_ssdm_op_Write.ap_fifo.volatile.i8P(i8* %dst_data_stream_2_V, i8 %tmp_98)
+
+ST_4: stg_53 [1/1] 4.63ns
+operator<<.exit:24  call void @_ssdm_op_Write.ap_fifo.volatile.i8P(i8* %dst_data_stream_3_V, i8 %tmp_99)
+
+ST_4: empty_126 [1/1] 0.00ns
+operator<<.exit:25  %empty_126 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str1846, i32 %tmp_49)
+
+ST_4: empty_127 [1/1] 0.00ns
+operator<<.exit:26  %empty_127 = call i32 (...)* @_ssdm_op_SpecRegionEnd([11 x i8]* @p_str1817, i32 %tmp_s)
+
+ST_4: stg_56 [1/1] 0.00ns
+operator<<.exit:27  br label %1
+
+
+ <State 5>: 0.00ns
+ST_5: empty_128 [1/1] 0.00ns
+:0  %empty_128 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str1816, i32 %tmp)
+
+ST_5: stg_58 [1/1] 0.00ns
+:1  br label %.preheader
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 20ns, clock uncertainty: 2.5ns.
+
+ No timing violations. 
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

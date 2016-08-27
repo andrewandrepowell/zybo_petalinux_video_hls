@@ -1,0 +1,8 @@
+#ifndef FILT_VDMA_H_
+#define FILT_VDMA_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#endif

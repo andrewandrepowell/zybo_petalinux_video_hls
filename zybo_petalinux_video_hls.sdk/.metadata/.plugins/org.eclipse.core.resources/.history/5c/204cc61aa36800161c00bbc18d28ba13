@@ -1,0 +1,20 @@
+/*
+ * Empty C++ Application
+ */
+
+int main()
+{
+	return 0;
+}
+
+void outbyte (char8 c)
+{
+	cout << c;
+}
+
+char8 inbyte(void)
+{
+	char c;
+	cin >> c;
+	return c;
+}

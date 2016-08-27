@@ -1,0 +1,21 @@
+#ifndef LINUXGPIO_H_
+#define LINUXGPIO_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <poll.h>
+
+class linuxgpio
+{
+public:
+private:
+	int fd;
+};
+
+#endif

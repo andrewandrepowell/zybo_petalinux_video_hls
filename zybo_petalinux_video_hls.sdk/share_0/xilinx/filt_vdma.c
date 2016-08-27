@@ -1,0 +1,180 @@
+#include "filt_vdma.h"
+
+int filtvdma_setup( filtvdma* ptr, u16 XFilt_DeviceId, u16 XaxiVdma_DeviceId,
+		filtvdma_frameConfig* frameConfig )
+{
+	/* Configure the filt core. */
+	{
+		int Status;
+
+		/* Initialize filt core. */
+		Status = XFilt_Initialize( &ptr->filt_obj, XFilt_DeviceId );
+		if (  Status != XST_SUCCESS )
+		{
+			xil_printf( "Failed to initialize xfilt core with id %d", XFilt_DeviceId );
+			return XST_FAILURE;
+		}
+
+		/* Bit0 of the enable register refers to the ap_done
+		flag. This flag signals when the entire operation is finished.
+		To keep this project simple, we'll simply use this option. */
+		XFilt_InterruptGlobalEnable( &ptr->filt_obj );
+		XFilt_InterruptEnable( &ptr->filt_obj, 1 );
+
+		/* Let's configure the core to auto start so frames can be
+		sent to the core entirely with the VDMA. */
+		XFilt_EnableAutoRestart( &ptr->filt_obj );
+		XFilt_Start( &ptr->filt_obj );
+	}
+
+	/* Configure the VMDA core. */
+	{
+		XAxiVdma_Config* config;
+		unsigned i;
+		int Status;
+
+		/* Initialize VDMA core. */
+		config = XAxiVdma_LookupConfig( XaxiVdma_DeviceId );
+		if ( config == NULL )
+		{
+			xil_printf( "Failed to find configuration for XaxiVdma with id %d", XaxiVdma_DeviceId );
+			return XST_FAILURE;
+		}
+		Status = XAxiVdma_CfgInitialize( &ptr->vdma_obj, config, config->BaseAddress );
+		if ( Status != XST_SUCCESS )
+		{
+			xil_printf( "Failed to initialize XaxiVdma core with id %d", XaxiVdma_DeviceId );
+			return Status;
+		}
+
+		/* Enable completion interrupts. */
+		{
+			XAxiVdma_FrameCounter counter;
+			XAxiVdma_IntrEnable( &ptr->vdma_obj, XAXIVDMA_IXR_COMPLETION_MASK, XAXIVDMA_READ );
+			XAxiVdma_IntrEnable( &ptr->vdma_obj, XAXIVDMA_IXR_COMPLETION_MASK, XAXIVDMA_WRITE );
+			counter.ReadFrameCount = 1;
+			counter.ReadDelayTimerCount = 0;
+			counter.WriteFrameCount = 1;
+			counter.WriteDelayTimerCount = 0;
+			Status = XAxiVdma_SetFrameCounter( &ptr->vdma_obj, &counter );
+			if ( Status!= XST_SUCCESS )
+			{
+				xil_printf( "Failed to set frame counter." );
+				return Status;
+			}
+		}
+
+		/* Store VDMA configurations. */
+		ptr->vdmaConfig.VertSizeInput = frameConfig->VertSizeInput;
+		ptr->vdmaConfig.HoriSizeInput = frameConfig->HoriSizeInput;
+		ptr->vdmaConfig.Stride = frameConfig->Stride;
+		ptr->vdmaConfig.FrameDelay = 0;
+		ptr->vdmaConfig.EnableCircularBuf = 0;
+		ptr->vdmaConfig.EnableSync = 0;
+		ptr->vdmaConfig.PointNum = 0;
+		ptr->vdmaConfig.EnableFrameCounter = 0;
+		ptr->vdmaConfig.FixedFrameStoreAddr = 0;
+		ptr->vdmaConfig.GenLockRepeat = 0;
+		for ( i = 0; i < frameConfig->nframes; i++ )
+		{
+			ptr->vdmaConfig.FrameStoreStartAddr[ i ] = frameConfig->FrameStoreStartAddr[ i ];
+		}
+	}
+
+	return XST_SUCCESS;
+}
+
+int filtvdma_startwriteframe( filtvdma* ptr, int write_frame_index )
+{
+	int Status;
+
+	ptr->vdmaConfig.FixedFrameStoreAddr = write_frame_index;
+	Status = XAxiVdma_DmaConfig( &ptr->vdma_obj, XAXIVDMA_WRITE, &ptr->vdmaConfig );
+	if ( Status != XST_SUCCESS  )
+	{
+		xil_printf( "Failed to configure write channel for vdma." );
+		return Status;
+	}
+
+	Status = XAxiVdma_DmaSetBufferAddr( &ptr->vdma_obj, XAXIVDMA_WRITE, ptr->vdmaConfig.FrameStoreStartAddr );
+	if (Status != XST_SUCCESS)
+	{
+		xil_printf("Write channel set buffer address failed.\n");
+		return Status;
+	}
+
+	Status = XAxiVdma_DmaStart( &ptr->vdma_obj, XAXIVDMA_WRITE );
+	if (Status != XST_SUCCESS)
+	{
+		xil_printf( "Start write transfer failed.\n" );
+		return Status;
+	}
+
+	Status = XAxiVdma_StartParking( &ptr->vdma_obj, write_frame_index, XAXIVDMA_WRITE );
+	if ( Status != XST_SUCCESS )
+	{
+		xil_printf( "Failed to start write parking mode with VDMA." );
+		return Status;
+	}
+	return Status;
+}
+
+int filtvdma_startreadframe( filtvdma* ptr, int read_frame_index )
+{
+	int Status;
+
+	Status = XAxiVdma_FsyncSrcSelect( &ptr->vdma_obj, XAXIVDMA_CHAN_FSYNC, XAXIVDMA_READ );
+	if (Status != XST_SUCCESS)
+	{
+		xil_printf("Setting fsync for read channel failed.\n");
+		return Status;
+	}
+
+	ptr->vdmaConfig.FixedFrameStoreAddr = read_frame_index;
+	Status = XAxiVdma_DmaConfig( &ptr->vdma_obj, XAXIVDMA_READ, &ptr->vdmaConfig );
+	if ( Status != XST_SUCCESS  )
+	{
+		xil_printf( "Failed to configure read channel for vdma." );
+		return Status;
+	}
+
+	Status = XAxiVdma_DmaSetBufferAddr( &ptr->vdma_obj, XAXIVDMA_READ, ptr->vdmaConfig.FrameStoreStartAddr );
+	if (Status != XST_SUCCESS)
+	{
+		xil_printf("Read channel set buffer address failed.\n");
+		return Status;
+	}
+
+	Status = XAxiVdma_DmaStart( &ptr->vdma_obj, XAXIVDMA_READ );
+	if (Status != XST_SUCCESS)
+	{
+		xil_printf( "Start read transfer failed.\n" );
+		return Status;
+	}
+
+	Status = XAxiVdma_StartParking( &ptr->vdma_obj, read_frame_index, XAXIVDMA_READ );
+	if ( Status != XST_SUCCESS )
+	{
+		xil_printf( "Failed to start read parking mode with VDMA." );
+		return Status;
+	}
+	return XST_SUCCESS;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

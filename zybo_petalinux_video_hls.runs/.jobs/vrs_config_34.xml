@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="block_design_0_xbar_2_synth_1" LaunchDir="/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.runs/block_design_0_xbar_2_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="block_design_0_xbar_2_synth_1"/>
+	</Run>
+	<Run Id="impl_1" LaunchDir="/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.runs/impl_1" FlowId="Vivado_Implementation" FromStepId="init_design" ToStepId="write_bitstream">
+		<Parent Id="synth_1"/>
+		<Parent Id="block_design_0_xbar_2_synth_1"/>
+	</Run>
+</Runs>
+

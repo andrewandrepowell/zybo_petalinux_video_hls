@@ -1,0 +1,32 @@
+#ifndef FILT_VDMA_H_
+#define FILT_VDMA_H_
+
+#include "xdebug.h"
+#include "xfilt.h"
+#include "xaxivdma.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+	typedef struct
+	{
+		int VertSizeInput;      /**< Vertical size input */
+		int HoriSizeInput;      /**< Horizontal size input */
+		int Stride;             /**< Stride */
+	}
+	filtvdma_frameConfig;
+
+	typedef struct
+	{
+		XFilt filt_obj;
+		XAxiVdma vdma_obj;
+		XAxiVdma_DmaSetup vdmaConfig;
+	}
+	filtvdma;
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* FILT_VDMA_H_ */

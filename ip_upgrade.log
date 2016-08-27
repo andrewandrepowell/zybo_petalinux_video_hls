@@ -1,0 +1,257 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Fri Aug 26 09:21:50 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608260020) to (Rev. 1608260920)
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading 'block_design_0_filt_0_0'. These changes may impact your design.
+
+
+-Upgraded port 's_axi_CONTROL_BUS_ARADDR' width 4 differs from original width 5
+
+-Upgraded port 's_axi_CONTROL_BUS_AWADDR' width 4 differs from original width 5
+
+
+
+
+
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Fri Aug 26 00:23:01 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608252246) to (Rev. 1608260020)
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading 'block_design_0_filt_0_0'. These changes may impact your design.
+
+
+-Upgraded port 's_axi_CONTROL_BUS_ARADDR' width 5 differs from original width 4
+
+-Upgraded port 's_axi_CONTROL_BUS_AWADDR' width 5 differs from original width 4
+
+
+
+
+
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Thu Aug 25 22:54:17 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608252152) to (Rev. 1608252246)
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading 'block_design_0_filt_0_0'. These changes may impact your design.
+
+
+-Upgraded port 's_axi_CONTROL_BUS_ARADDR' width 4 differs from original width 5
+
+-Upgraded port 's_axi_CONTROL_BUS_AWADDR' width 4 differs from original width 5
+
+
+
+
+
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Thu Aug 25 21:53:35 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608252048) to (Rev. 1608252152)
+
+
+
+
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Thu Aug 25 20:49:43 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608251958) to (Rev. 1608252048)
+
+
+
+
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Thu Aug 25 19:59:37 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608251928) to (Rev. 1608251958)
+
+
+
+
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Thu Aug 25 19:30:27 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608251900) to (Rev. 1608251928)
+
+
+
+
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Thu Aug 25 19:01:53 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608251819) to (Rev. 1608251900)
+
+
+
+
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Thu Aug 25 18:20:57 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608211953) to (Rev. 1608251819)
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading 'block_design_0_filt_0_0'. These changes may impact your design.
+
+
+-Upgraded port 's_axi_CONTROL_BUS_ARADDR' width 5 differs from original width 4
+
+-Upgraded port 's_axi_CONTROL_BUS_AWADDR' width 5 differs from original width 4
+
+
+
+
+
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Sun Aug 21 19:54:56 2016
+| Host         : andrewandrepowell2-desktop running 64-bit Ubuntu 16.04 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'block_design_0_filt_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of block_design_0_filt_0_0 (xilinx.com:hls:filt:1.0) from (Rev. 1608211932) to (Rev. 1608211953)
+

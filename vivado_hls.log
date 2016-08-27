@@ -1,0 +1,20 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.2/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'andrewandrepowell2' on host 'andrewandrepowell2-desktop' (Linux_x86_64 version 4.4.0-34-generic) on Fri Aug 26 09:20:55 EDT 2016
+INFO: [HLS 200-10] On os Ubuntu 16.04 LTS
+INFO: [HLS 200-10] In directory '/opt/Xilinx/Projects/zybo_petalinux_video_hls'
+INFO: [HLS 200-10] Opening project '/opt/Xilinx/Projects/zybo_petalinux_video_hls/filt_hls_proj'.
+INFO: [HLS 200-10] Opening solution '/opt/Xilinx/Projects/zybo_petalinux_video_hls/filt_hls_proj/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 20ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z010clg400-1'
+INFO: [IMPL 213-8] Exporting RTL as an IP in IP-XACT.
+
+****** Vivado v2016.2 (64-bit)
+  **** SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2016.2/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Fri Aug 26 09:21:07 2016...

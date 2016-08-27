@@ -1,0 +1,17 @@
+15:53:50 **** Build of configuration Debug for project digilent_example_standalone_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/display_ctrl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/display_ctrl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../testapp_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/display_ctrl.d" -MT"src/display_ctrl.o" -o "src/display_ctrl.o" "../src/display_ctrl.c"
+In file included from ../src/display_ctrl.c:56:0:
+src/subdir.mk:30: recipe for target 'src/display_ctrl.o' failed
+../src/display_ctrl.h:54:23: fatal error: xil_types.h: No such file or directory
+ #include "xil_types.h"
+                       ^
+compilation terminated.
+make: *** [src/display_ctrl.o] Error 1
+
+15:53:51 Build Finished (took 177ms)
+

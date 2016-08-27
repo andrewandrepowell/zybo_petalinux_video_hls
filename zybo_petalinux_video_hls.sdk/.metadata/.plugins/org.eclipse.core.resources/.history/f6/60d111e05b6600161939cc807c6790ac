@@ -1,0 +1,149 @@
+#include "linuxgpio.h"
+
+linuxgpio::linuxgpio( uint32_t base ) : base ( base )
+{
+	/* Check how many channels the GPIO chip has */
+	{
+		char nchan_file[ 128 ];
+		sprintf( nchan_file, "%s/gpiochip%u/ngpio", GPIO_ROOT, base );
+
+		/* Get number of channels as string. */
+		char nchannel_str[ 5 ];
+		try
+		{
+			open_raii nchan_fd( open( nchan_file, O_RDONLY ) );
+			read( nchan_fd, nchannel_str, sizeof(nchannel_str) );
+		}
+		catch ( std::runtime_error& e )
+		{
+			fprintf( stderr, "Failed to open %s: %s\n", nchan_file, strerror(errno) );
+			throw e;
+		}
+
+		/* Convert string to an integer. */
+		char* cptr;
+		nchannel = static_cast<int>( strtoul( nchannel_str, &cptr, 0 ) );
+		if ( cptr == nchannel_str )
+		{
+			fprintf(stderr, "Failed to change %s into GPIO channel number\n", nchannel_str );
+			throw std::runtime_error( "Converted string to integer failed" );
+		}
+	}
+
+	/* Export pin values. */
+	{
+		char export_file[ 128 ];
+		sprintf( export_file, "%s/export", GPIO_ROOT );
+
+		try
+		{
+			open_raii export_fd( open( export_file, O_WRONLY ) );
+			uint32_t base_max = base+nchannel;
+			for ( uint32_t curr_pin = base; curr_pin<base_max; curr_pin++ )
+			{
+				char channel_str[ 5 ];
+				sprintf( channel_str, "%u", curr_pin );
+				write( export_fd, channel_str, strlen( channel_str )+1 );
+			}
+		}
+		catch ( std::runtime_error& e )
+		{
+			fprintf( stderr, "Cannot open GPIO to export %d\n", base );
+			throw e;
+		}
+	}
+}
+
+linuxgpio::~linuxgpio()
+{
+	char unexport_file[ 128 ];
+	sprintf( unexport_file, "%s/unexport", GPIO_ROOT );
+
+	try
+	{
+		open_raii unexport_fd( open( unexport_file, O_WRONLY ) );
+		uint32_t base_max = base+nchannel;
+		for ( uint32_t curr_pin = base_max; curr_pin<base_max; curr_pin++ )
+		{
+			char channel_str[ 5 ];
+			sprintf( channel_str, "%u", curr_pin );
+			write( unexport_fd, channel_str, strlen( channel_str )+1 );
+		}
+	}
+	catch ( std::runtime_error& e )
+	{
+		fprintf( stderr, "Cannot close GPIO by writing unexport %d\n", base );
+		throw e;
+	}
+}
+
+void linuxgpio::set_direction( uint32_t direction ) /* 0 - output, 1 - input */
+{
+	char dir_file[ 128 ];
+
+	for ( uint32_t curr_pin_0=0; curr_pin_0<nchannel; curr_pin_0++, direction >>= 1 )
+	{
+		uint32_t curr_pin_1 = base+curr_pin_0;
+		sprintf( dir_file, "%s/gpio%u/direction", GPIO_ROOT, curr_pin_1 );
+		try
+		{
+			open_raii dir_fd( open( dir_file, O_RDWR ) );
+			const char* dir_str = ( direction & 1 ) ? "in" : "out";
+			write( dir_fd, dir_str, ( strlen( dir_str ) + 1 ) );
+		}
+		catch ( std::runtime_error& e )
+		{
+			fprintf( stderr, "Cannot open the direction file for GPIO %u\n", curr_pin_1 );
+			throw e;
+		}
+	}
+}
+
+void linuxgpio::set_edge( uint32_t edge ) /* 0 - none, 1 - rising */
+{
+	char edge_file[ 128 ];
+
+	for ( uint32_t curr_pin_0=0; curr_pin_0<nchannel; curr_pin_0++, edge >>= 1 )
+	{
+		uint32_t curr_pin_1 = base+curr_pin_0;
+		sprintf( edge_file, "%s/gpio%u/edge", GPIO_ROOT, curr_pin_1 );
+		try
+		{
+			open_raii edge_fd( open( edge_file, O_RDWR ) );
+			const char* edge_str = ( edge & 1 ) ? "rising" : "none";
+			write( edge_fd, edge_str, ( strlen( edge_str ) + 1 ) );
+		}
+		catch ( std::runtime_error& e )
+		{
+			fprintf( stderr, "Cannot open the edge file for GPIO %d\n", curr_pin_1 );
+			throw e;
+		}
+	}
+}
+
+void linuxgpio::set_value( uint32_t value )
+{
+	char val_file[ 128 ];
+
+	for ( uint32_t curr_pin_0=0; curr_pin_0<nchannel; curr_pin_0++, value >>= 1 )
+	{
+		uint32_t curr_pin_1 = base+curr_pin_0;
+		sprintf( val_file, "%s/gpio%u/value", GPIO_ROOT, curr_pin_1 );
+		try
+		{
+			open_raii edge_fd( open( edge_file, O_RDWR ) );
+			const char* edge_str = ( edge & 1 ) ? "rising" : "none";
+			write( edge_fd, edge_str, ( strlen( edge_str ) + 1 ) );
+		}
+		catch ( std::runtime_error& e )
+		{
+			fprintf( stderr, "Cannot open the edge file for GPIO %d\n", curr_pin_1 );
+			throw e;
+		}
+	}
+}
+
+uint32_t linuxgpio::get_value()
+{
+
+}

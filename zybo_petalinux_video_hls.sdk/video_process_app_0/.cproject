@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="xilinx.gnu.armv7.linux.exe.debug.8510688">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="xilinx.gnu.armv7.linux.exe.debug.8510688" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="com.xilinx.sdk.managedbuilder.XELF.arm.a53.x32.linux" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="elf" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="xilinx.gnu.armv7.linux.exe.debug.8510688" name="Debug" parent="xilinx.gnu.armv7.linux.exe.debug">
+					<folderInfo id="xilinx.gnu.armv7.linux.exe.debug.8510688." name="/" resourcePath="">
+						<toolChain id="xilinx.gnu.armv7.linux.exe.debug.toolchain.1556971650" name="Xilinx ARM v7 GNU/Linux Toolchain" superClass="xilinx.gnu.armv7.linux.exe.debug.toolchain">
+							<targetPlatform binaryParser="com.xilinx.sdk.managedbuilder.XELF.arm.a53.x32.linux" id="xilinx.armv7.linux.target.gnu.base.debug.1343729489" isAbstract="false" name="Debug Platform" superClass="xilinx.armv7.linux.target.gnu.base.debug"/>
+							<builder buildPath="${workspace_loc:/video_process_app_0}/Debug" enableAutoBuild="true" id="xilinx.gnu.armv7.linux.toolchain.builder.debug.135223442" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="GNU make" superClass="xilinx.gnu.armv7.linux.toolchain.builder.debug"/>
+							<tool id="xilinx.gnu.armv7.linux.c.toolchain.assembler.debug.1429331103" name="ARM v7 Linux gcc assembler" superClass="xilinx.gnu.armv7.linux.c.toolchain.assembler.debug">
+								<inputType id="xilinx.gnu.assembler.input.119081100" superClass="xilinx.gnu.assembler.input"/>
+							</tool>
+							<tool id="xilinx.gnu.armv7.linux.c.toolchain.compiler.debug.430317105" name="ARM v7 Linux gcc compiler" superClass="xilinx.gnu.armv7.linux.c.toolchain.compiler.debug">
+								<option defaultValue="gnu.c.optimization.level.none" id="xilinx.gnu.compiler.option.optimization.level.1530917345" name="Optimization Level" superClass="xilinx.gnu.compiler.option.optimization.level" valueType="enumerated"/>
+								<option id="xilinx.gnu.compiler.option.debugging.level.1646917656" name="Debug Level" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
+							</tool>
+							<tool id="xilinx.gnu.armv7.linux.cxx.toolchain.compiler.debug.481090267" name="ARM v7 Linux g++ compiler" superClass="xilinx.gnu.armv7.linux.cxx.toolchain.compiler.debug">
+								<option defaultValue="gnu.c.optimization.level.none" id="xilinx.gnu.compiler.option.optimization.level.147428652" name="Optimization Level" superClass="xilinx.gnu.compiler.option.optimization.level" valueType="enumerated"/>
+								<option id="xilinx.gnu.compiler.option.debugging.level.1316248151" name="Debug Level" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
+								<option id="xilinx.gnu.compiler.dircategory.includes.633986330" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/share_0/xilinx}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/share_0}&quot;"/>
+									<listOptionValue builtIn="false" value="/opt/opencv-3.1.0/modules/video/include"/>
+									<listOptionValue builtIn="false" value="/opt/opencv-3.1.0/modules/imgproc/include"/>
+									<listOptionValue builtIn="false" value="/opt/opencv-3.1.0/modules/videoio/include"/>
+									<listOptionValue builtIn="false" value="/opt/opencv-3.1.0/modules/imgcodecs/include"/>
+									<listOptionValue builtIn="false" value="/opt/opencv-3.1.0/modules/highgui/include"/>
+									<listOptionValue builtIn="false" value="/opt/opencv-3.1.0/modules/core/include"/>
+								</option>
+								<inputType id="xilinx.gnu.armv7.linux.cxx.compiler.input.1682873702" name="C++ source files" superClass="xilinx.gnu.armv7.linux.cxx.compiler.input"/>
+							</tool>
+							<tool id="xilinx.gnu.armv7.linux.toolchain.archiver.1775539078" name="ARM v7 Linux archiver" superClass="xilinx.gnu.armv7.linux.toolchain.archiver"/>
+							<tool id="xilinx.gnu.armv7.linux.c.toolchain.linker.debug.786630274" name="ARM v7 Linux gcc linker" superClass="xilinx.gnu.armv7.linux.c.toolchain.linker.debug"/>
+							<tool id="xilinx.gnu.armv7.linux.cxx.toolchain.linker.debug.426985236" name="ARM v7 Linux g++ linker" superClass="xilinx.gnu.armv7.linux.cxx.toolchain.linker.debug">
+								<option id="xilinx.gnu.c.link.option.paths.609889004" name="Library search path (-L)" superClass="xilinx.gnu.c.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="/opt/opencv-armv7/lib"/>
+									<listOptionValue builtIn="false" value="/opt/opencv-armv7/3rdparty/lib"/>
+								</option>
+								<option id="xilinx.gnu.c.link.option.libs.1090501372" name="Libraries (-l)" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="opencv_videoio"/>
+									<listOptionValue builtIn="false" value="opencv_imgcodecs"/>
+									<listOptionValue builtIn="false" value="opencv_highgui"/>
+									<listOptionValue builtIn="false" value="opencv_imgproc"/>
+									<listOptionValue builtIn="false" value="opencv_photo"/>
+									<listOptionValue builtIn="false" value="opencv_video"/>
+									<listOptionValue builtIn="false" value="opencv_features2d"/>
+									<listOptionValue builtIn="false" value="opencv_objdetect"/>
+									<listOptionValue builtIn="false" value="opencv_shape"/>
+									<listOptionValue builtIn="false" value="opencv_core"/>
+									<listOptionValue builtIn="false" value="opencv_ml"/>
+									<listOptionValue builtIn="false" value="libtiff"/>
+									<listOptionValue builtIn="false" value="libwebp"/>
+									<listOptionValue builtIn="false" value="IlmImf"/>
+									<listOptionValue builtIn="false" value="libpng"/>
+									<listOptionValue builtIn="false" value="libjpeg"/>
+									<listOptionValue builtIn="false" value="libjasper"/>
+									<listOptionValue builtIn="false" value="zlib"/>
+									<listOptionValue builtIn="false" value="pthread"/>
+									<listOptionValue builtIn="false" value="dl"/>
+									<listOptionValue builtIn="false" value="rt"/>
+								</option>
+								<inputType id="xilinx.gnu.linker.input.1989526183" superClass="xilinx.gnu.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+								<inputType id="xilinx.gnu.linker.input.lscript.612760084" name="Linker Script" superClass="xilinx.gnu.linker.input.lscript"/>
+							</tool>
+							<tool id="xilinx.gnu.armv7.linux.size.debug.503638012" name="ARM v7 Linux Print Size" superClass="xilinx.gnu.armv7.linux.size.debug"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="xilinx.gnu.armv7.linux.exe.release.406831109">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="xilinx.gnu.armv7.linux.exe.release.406831109" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="com.xilinx.sdk.managedbuilder.XELF.arm.a53.x32.linux" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="elf" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release" cleanCommand="rm -rf" description="" id="xilinx.gnu.armv7.linux.exe.release.406831109" name="Release" parent="xilinx.gnu.armv7.linux.exe.release">
+					<folderInfo id="xilinx.gnu.armv7.linux.exe.release.406831109." name="/" resourcePath="">
+						<toolChain id="xilinx.gnu.armv7.linux.exe.release.toolchain.627752932" name="Xilinx ARM v7 GNU/Linux Toolchain" superClass="xilinx.gnu.armv7.linux.exe.release.toolchain">
+							<targetPlatform binaryParser="com.xilinx.sdk.managedbuilder.XELF.arm.a53.x32.linux" id="xilinx.armv7.linux.target.gnu.base.release.1902071623" isAbstract="false" name="Release Platform" superClass="xilinx.armv7.linux.target.gnu.base.release"/>
+							<builder buildPath="${workspace_loc:/video_process_app_0}/Release" enableAutoBuild="true" id="xilinx.gnu.armv7.linux.toolchain.builder.release.1914747009" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="GNU make" superClass="xilinx.gnu.armv7.linux.toolchain.builder.release"/>
+							<tool id="xilinx.gnu.armv7.linux.c.toolchain.assembler.release.1476564033" name="ARM v7 Linux gcc assembler" superClass="xilinx.gnu.armv7.linux.c.toolchain.assembler.release">
+								<inputType id="xilinx.gnu.assembler.input.1883233693" superClass="xilinx.gnu.assembler.input"/>
+							</tool>
+							<tool id="xilinx.gnu.armv7.linux.c.toolchain.compiler.release.879209065" name="ARM v7 Linux gcc compiler" superClass="xilinx.gnu.armv7.linux.c.toolchain.compiler.release">
+								<option defaultValue="gnu.c.optimization.level.more" id="xilinx.gnu.compiler.option.optimization.level.910767613" name="Optimization Level" superClass="xilinx.gnu.compiler.option.optimization.level" valueType="enumerated"/>
+								<option id="xilinx.gnu.compiler.option.debugging.level.241659592" name="Debug Level" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
+							</tool>
+							<tool id="xilinx.gnu.armv7.linux.cxx.toolchain.compiler.release.606699642" name="ARM v7 Linux g++ compiler" superClass="xilinx.gnu.armv7.linux.cxx.toolchain.compiler.release">
+								<option defaultValue="gnu.c.optimization.level.more" id="xilinx.gnu.compiler.option.optimization.level.1254307433" name="Optimization Level" superClass="xilinx.gnu.compiler.option.optimization.level" valueType="enumerated"/>
+								<option id="xilinx.gnu.compiler.option.debugging.level.1159828493" name="Debug Level" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
+								<inputType id="xilinx.gnu.armv7.linux.cxx.compiler.input.976536304" name="C++ source files" superClass="xilinx.gnu.armv7.linux.cxx.compiler.input"/>
+							</tool>
+							<tool id="xilinx.gnu.armv7.linux.toolchain.archiver.1336235335" name="ARM v7 Linux archiver" superClass="xilinx.gnu.armv7.linux.toolchain.archiver"/>
+							<tool id="xilinx.gnu.armv7.linux.c.toolchain.linker.release.649518732" name="ARM v7 Linux gcc linker" superClass="xilinx.gnu.armv7.linux.c.toolchain.linker.release"/>
+							<tool id="xilinx.gnu.armv7.linux.cxx.toolchain.linker.release.1663423357" name="ARM v7 Linux g++ linker" superClass="xilinx.gnu.armv7.linux.cxx.toolchain.linker.release">
+								<inputType id="xilinx.gnu.linker.input.1709276607" superClass="xilinx.gnu.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+								<inputType id="xilinx.gnu.linker.input.lscript.1618293244" name="Linker Script" superClass="xilinx.gnu.linker.input.lscript"/>
+							</tool>
+							<tool id="xilinx.gnu.armv7.linux.size.release.1806638035" name="ARM v7 Linux Print Size" superClass="xilinx.gnu.armv7.linux.size.release"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="video_process_app_0.xilinx.gnu.armv7.linux.exe.1015910720" name="Xilinx ARM v7 Linux Executable" projectType="xilinx.gnu.armv7.linux.exe"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="xilinx.gnu.armv7.linux.exe.debug.8510688;xilinx.gnu.armv7.linux.exe.debug.8510688.">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.xilinx.managedbuilder.ui.ARMA53X32LinuxGCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="xilinx.gnu.armv7.linux.exe.release.406831109;xilinx.gnu.armv7.linux.exe.release.406831109.;xilinx.gnu.armv7.linux.cxx.toolchain.compiler.release.606699642;xilinx.gnu.armv7.linux.cxx.compiler.input.976536304">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.xilinx.managedbuilder.ui.ARMA53X32LinuxGCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="xilinx.gnu.armv7.linux.exe.debug.8510688;xilinx.gnu.armv7.linux.exe.debug.8510688.;xilinx.gnu.armv7.linux.cxx.toolchain.compiler.debug.481090267;xilinx.gnu.armv7.linux.cxx.compiler.input.1682873702">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.xilinx.managedbuilder.ui.ARMA53X32LinuxGCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="xilinx.gnu.armv7.linux.exe.release.406831109;xilinx.gnu.armv7.linux.exe.release.406831109.">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.xilinx.managedbuilder.ui.ARMA53X32LinuxGCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="refreshScope"/>
+</cproject>

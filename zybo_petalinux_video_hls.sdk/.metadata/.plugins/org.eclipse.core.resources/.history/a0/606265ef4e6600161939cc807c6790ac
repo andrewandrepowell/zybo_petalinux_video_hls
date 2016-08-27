@@ -1,0 +1,31 @@
+#ifndef LINUXGPIO_H_
+#define LINUXGPIO_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <poll.h>
+#include <stdexcept>
+
+class linuxgpio
+{
+public:
+	linuxgpio( uint32_t base );
+	~linuxgpio();
+	void set_direction( uint32_t direction ); /* 0 - output, 1 - input */
+	void set_edge( uint32_t edge ); /* 0 - none, 1 - rising */
+	void set_value( uint32_t value );
+	uint32_t get_value();
+	uint32_t operator() { return get_value(); }
+private:
+	int base;
+	size_t npins;
+};
+
+#endif

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="block_design_0_wrapper_hw_platform_0" key="programflash.hwplatform"/>
+	<item value="" key="block_design_0_wrapper_hw_platform_0-fsblFile"/>
+	<item value="false" key="block_design_0_wrapper_hw_platform_0-verifyFlash"/>
+	<item value="qspi_single" key="block_design_0_wrapper_hw_platform_0-flashType"/>
+	<item value="" key="block_design_0_wrapper_hw_platform_0-offSet"/>
+	<item value="false" key="block_design_0_wrapper_hw_platform_0-blankCheck"/>
+	<item value="Auto Detect" key="block_design_0_wrapper_hw_platform_0-device"/>
+	<item value="Local" key="block_design_0_wrapper_hw_platform_0-target"/>
+	<item value="/opt/Xilinx/Projects/zybo_petalinux_video_hls/petalinux_proj/images/linux/BOOT.bin" key="block_design_0_wrapper_hw_platform_0-imgFile"/>
+</section>

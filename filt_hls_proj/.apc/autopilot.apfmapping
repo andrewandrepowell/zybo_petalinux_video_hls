@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="filt.cpp" path="/opt/Xilinx/Projects/zybo_petalinux_video_hls/filt_hls_proj/solution1/.tcls/filt.cpp"/>
+    <originFiles name="filt.h" path="/opt/Xilinx/Projects/zybo_petalinux_video_hls/filt_hls_proj/solution1/.tcls/filt.h"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

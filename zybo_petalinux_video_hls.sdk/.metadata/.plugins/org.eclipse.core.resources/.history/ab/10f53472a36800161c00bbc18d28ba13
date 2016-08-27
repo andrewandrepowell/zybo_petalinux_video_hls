@@ -1,0 +1,57 @@
+/*
+ * Empty C++ Application
+ */
+#include <iostream>
+#include <stdint.h>
+#include <stdexcept>
+#include "xparameters.h"
+#include "display_ctrl.h"
+#include "linuxmmap.h"
+#include "xil_printf.h"
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
+using namespace std;
+using namespace cv;
+
+/*--------------------------*/
+/*        Constants         */
+/*--------------------------*/
+
+#define DISPLAY_UIO_ID			( 0 )
+#define DISPLAY_DEF_VMODE		( VMODE_640x480 )
+#define DISPLAY_MAX_WIDTH		( 640 )
+#define DISPLAY_MAX_HEIGHT		( 480 )
+#define DISPLAY_MAX_FRAME		( DISPLAY_MAX_WIDTH*DISPLAY_MAX_HEIGHT )
+#define DISPLAY_STRIDE 			( DISPLAY_MAX_WIDTH*sizeof( uint32_t ) )
+#define DISPLAY_IS_HDMI			( false )
+#define VDMA_UIO_ID				( 2 )
+#define VDMA_DEVICE_ID 			( XPAR_AXI_VDMA_0_DEVICE_ID )
+#define VDMA_FRAME_BUFF_ADDR	( 0x30000000 ) /* Physical Address */
+
+/*--------------------------*/
+/*        Type Defs         */
+/*--------------------------*/
+
+typedef uint32_t ( vdma_framebuff )[ DISPLAY_NUM_FRAMES ][ DISPLAY_MAX_FRAME ];
+
+/*--------------------------*/
+/*       Declarations       */
+/*--------------------------*/
+
+int main()
+{
+	return 0;
+}
+
+void outbyte (char8 c)
+{
+	cout << c;
+}
+
+char8 inbyte(void)
+{
+	char c;
+	cin >> c;
+	return c;
+}

@@ -1,0 +1,128 @@
+
+
+================================================================
+== Vivado HLS Report for 'filt_Block_codeRepl42_proc'
+================================================================
+* Date:           Fri Aug 26 09:20:22 2016
+
+* Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
+* Project:        filt_hls_proj
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z010clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  20.00|      4.63|        2.50|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    0|    0|    0|    0|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 0
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 1
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+* FSM state operations: 
+
+ <State 1>: 4.63ns
+ST_1: stg_2 [1/1] 0.00ns
+entry:0  call void (...)* @_ssdm_op_SpecInterface(i11* %dst_mat_cols_V_out, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_3 [1/1] 0.00ns
+entry:1  call void (...)* @_ssdm_op_SpecInterface(i10* %dst_mat_rows_V_out, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_4 [1/1] 0.00ns
+entry:2  call void (...)* @_ssdm_op_SpecInterface(i10* %src_mat_cols_V_out, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_5 [1/1] 0.00ns
+entry:3  call void (...)* @_ssdm_op_SpecInterface(i9* %src_mat_rows_V_out, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_1: stg_6 [1/1] 4.63ns
+entry:4  call void @_ssdm_op_Write.ap_fifo.i9P(i9* %src_mat_rows_V_out, i9 240)
+
+ST_1: stg_7 [1/1] 4.63ns
+entry:5  call void @_ssdm_op_Write.ap_fifo.i10P(i10* %src_mat_cols_V_out, i10 320)
+
+ST_1: stg_8 [1/1] 4.63ns
+entry:6  call void @_ssdm_op_Write.ap_fifo.i10P(i10* %dst_mat_rows_V_out, i10 480)
+
+ST_1: stg_9 [1/1] 4.63ns
+entry:7  call void @_ssdm_op_Write.ap_fifo.i11P(i11* %dst_mat_cols_V_out, i11 640)
+
+ST_1: stg_10 [1/1] 0.00ns
+entry:8  ret void
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 20ns, clock uncertainty: 2.5ns.
+
+ No timing violations. 
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

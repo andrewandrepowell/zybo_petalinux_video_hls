@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;xfilt_hw.h, xfilt_sinit.c, xfilt.c, xfilt.h&apos; to &apos;xilinx&apos;" description="Move 4 resources to &apos;xilinx&apos;" destination="xilinx" element1="xfilt_hw.h" element2="xfilt_sinit.c" element3="xfilt.c" element4="xfilt.h" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="4" stamp="1471900397749" updateReferences="true"/>
+</session>

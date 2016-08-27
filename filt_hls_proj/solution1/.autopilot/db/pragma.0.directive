@@ -1,0 +1,28 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="filt" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="src_axi"/>
+<option name="bundle" value="INPUT_STREAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="filt" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="dst_axi"/>
+<option name="bundle" value="OUTPUT_STREAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="filt" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+<option name="bundle" value="CONTROL_BUS"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="filt" label="">
+<pragma name="DATAFLOW"/>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

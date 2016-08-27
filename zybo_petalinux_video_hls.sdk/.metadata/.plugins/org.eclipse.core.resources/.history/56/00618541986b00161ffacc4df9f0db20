@@ -1,0 +1,371 @@
+/*
+Author: Andrew Powell
+Notes:
+
+Interesting find. If the application is running
+and look at the CPU utilization of both processors with
+the "top" command, it shows that only one CPU
+is being utilized! But, why!?
+
+As it turns out, there was a mistake in my RTL design!
+There is 150 MHz clock driving the AXI Memory Map to
+Slave interface of the VDMA! With the fix, 800x600
+resolution now works!
+
+Another helpful hint: The userspace i/o driver is so
+much more useful than the regular mem approach! You get
+to use interrupts!
+
+http://fpga.org/2013/05/28/how-to-design-and-access-a-memory-mapped-device-part-two/
+https://forums.xilinx.com/t5/Embedded-Linux/generic-UIO-broken/td-p/564259
+*/
+
+#include <iostream>
+#include <stdint.h>
+#include <stdexcept>
+#include "xparameters.h"
+#include "xfilt.h"
+#include "xgpio.h"
+#include "display_ctrl.h"
+#include "filt_vdma.h"
+#include "linuxmmap.h"
+#include <semaphore.h>
+#include "opencv2/core/core.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/videoio/videoio.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
+using namespace std;
+using namespace cv;
+
+/*--------------------------*/
+/*        Constants         */
+/*--------------------------*/
+
+#define DISPLAY_UIO_ID			( 0 )
+#define DISPLAY_DEF_VMODE		( VMODE_640x480 )
+#define DISPLAY_MAX_WIDTH		( 640 )
+#define DISPLAY_MAX_HEIGHT		( 480 )
+#define DISPLAY_MAX_FRAME		( DISPLAY_MAX_WIDTH*DISPLAY_MAX_HEIGHT )
+#define DISPLAY_STRIDE 			( DISPLAY_MAX_WIDTH*sizeof( uint32_t ) )
+#define DISPLAY_IS_HDMI			( false )
+#define DISPLAY_ROI_WIDTH		( 320 )
+#define DISPLAY_ROI_HEIGHT		( 240 )
+#define VDMA_UIO_ID				( 2 )
+#define VDMA_DEVICE_ID 			( XPAR_AXI_VDMA_0_DEVICE_ID )
+#define VDMA_FRAME_BUFF_ADDR	( 0x30000000 ) /* Physical Address */
+#define GPIO_UIO_ID				( 1 )
+#define GPIO_DEVICE_ID			( XPAR_AXI_GPIO_0_DEVICE_ID )
+#define FILT_UIO_ID				( 5 )
+#define FILT_DEVICE_ID			( XPAR_FILT_0_DEVICE_ID )
+#define FILT_VDMA_UIO_ID_0		( 3 )
+#define FILT_VDMA_UIO_ID_1		( 4 )
+#define FILT_VDMA_DEVICE_ID		( XPAR_AXI_VDMA_1_DEVICE_ID )
+#define FILT_GPIO_DEVICE_ID		( XPAR_AXI_GPIO_1_DEVICE_ID )
+#define FILT_GPIO_UIO_ID		( 6 )
+#define USERIN_ENABLE_GRAY		( 0b0001 )
+#define USERIN_ENABLE_SOBEL		( 0b0010 )
+#define USERIN_ENABLE_HARRIS	( 0b0100 )
+
+/*--------------------------*/
+/*        Type Defs         */
+/*--------------------------*/
+
+typedef uint32_t ( vdma_framebuff )[ DISPLAY_NUM_FRAMES ][ DISPLAY_MAX_FRAME ];
+
+/*--------------------------*/
+/*       Declarations       */
+/*--------------------------*/
+
+/* Object that represents the Digilent AXI Display Controller. */
+DisplayCtrl display_obj;
+const VideoMode* vmode_ptr = &DISPLAY_DEF_VMODE;
+
+/* The following virtual addresses need to be defined such that
+They are mapped to the appropriate physical addresses! In the future, the
+generic uio driver should be used to perform these memory maps! */
+linuxmmap dispctrl_mmap_obj( DISPLAY_UIO_ID );
+linuxmmap vdma_mmap_obj( VDMA_UIO_ID );
+linuxmmap framebuff_mmap_obj( VDMA_FRAME_BUFF_ADDR, sizeof( vdma_framebuff ) );
+
+/* Reference the memory dedicated to the frame buffers. */
+vdma_framebuff& framebuff_arr = *( reinterpret_cast<vdma_framebuff*>( framebuff_mmap_obj.getvaddr() ) );
+uint32_t* vir_framebuff_ptr[ DISPLAY_NUM_FRAMES ];
+uint32_t* phy_framebuff_ptr[ DISPLAY_NUM_FRAMES ];
+
+/* Objects related to the GPIO. */
+linuxmmap gpio_mmap( GPIO_UIO_ID );
+XGpio gpio_obj;
+pthread_t gpio_pthread;
+volatile uint8_t userinput = 0;
+
+/* Represents the HLS filt. */
+filtvdma filtvdma_obj;
+XGpio fsync_obj;
+linuxmmap filt_mmap_obj( FILT_UIO_ID );
+linuxmmap filt_vdma_mmap_0_obj( FILT_VDMA_UIO_ID_0 );
+linuxmmap filt_vdma_mmap_1_obj( FILT_VDMA_UIO_ID_1 );
+linuxmmap filt_gpio_mmap_obj( FILT_GPIO_UIO_ID );
+
+/* OpenCV objects. */
+Mat framebuff_mat[ DISPLAY_NUM_FRAMES ];
+VideoCapture vstream_obj( -1 );
+Mat roi_mat;
+
+void* gpio_handler( void* param );
+
+/*--------------------------*/
+/*           Main           */
+/*--------------------------*/
+
+int main()
+{
+	/* check and see if the camera actually works. */
+	cout << "Checking to see if the video stream opened and setting resolution..." << endl;
+	{
+		if ( !vstream_obj.isOpened() )
+			throw runtime_error( "Web camera could not be opened!" );
+		vstream_obj.set( CV_CAP_PROP_FRAME_WIDTH,DISPLAY_ROI_WIDTH );
+		vstream_obj.set( CV_CAP_PROP_FRAME_HEIGHT,DISPLAY_ROI_HEIGHT );
+	}
+
+	/* Configure display. */
+	cout << "Configuring display..." << endl;
+	{
+		/* Modifications need to be done to the AXI VDMA's configuration table. */
+		extern XAxiVdma_Config XAxiVdma_ConfigTable[];
+		XAxiVdma_ConfigTable[ VDMA_DEVICE_ID ].BaseAddress = vdma_mmap_obj.getvaddr();
+
+		/* There needs to be pointers that point to each of the frames. Since the display
+		driver needs to configure the VDMA with physical pointers, both the virtual and
+		physical addresses are needed. */
+		for ( int each_frame = 0; each_frame < DISPLAY_NUM_FRAMES; each_frame++ )
+		{
+			vir_framebuff_ptr[ each_frame ] = framebuff_arr[ each_frame ];
+			phy_framebuff_ptr[ each_frame ] = reinterpret_cast<uint32_t*>( VDMA_FRAME_BUFF_ADDR +
+					( each_frame * DISPLAY_MAX_FRAME * sizeof( uint32_t ) ) );
+		}
+
+		/* Configure the display driver. */
+		int Status;
+		Status = DisplayInitialize( &display_obj,
+				VDMA_DEVICE_ID,
+				dispctrl_mmap_obj.getvaddr(),
+				DISPLAY_IS_HDMI,
+				vir_framebuff_ptr, phy_framebuff_ptr,
+				DISPLAY_STRIDE );
+		if ( Status!= XST_SUCCESS )
+			throw runtime_error( "The display driver wasn't properly configured." );
+
+		/* Set the resolution. */
+		DisplaySetMode( &display_obj, vmode_ptr );
+
+		/* Start display. */
+		Status = DisplayStart( &display_obj );
+		if ( Status!= XST_SUCCESS )
+			throw runtime_error( "The display could not be started." );
+	}
+
+	/* Configure opencv frames with framebuffer. */
+	cout << "Configuring framebuffer with opencv Mats..." << endl;
+	{
+		const int sizes[] =
+		{
+				static_cast<const int>( display_obj.vMode.height ),
+				static_cast<const int>( display_obj.vMode.width )
+		};
+		const size_t steps[] = { DISPLAY_STRIDE };
+		for ( int each_frame = 0; each_frame < DISPLAY_NUM_FRAMES; each_frame++ )
+		{
+			framebuff_mat[ each_frame ] = Mat(
+					2, sizes,
+					CV_8UC(4),
+					reinterpret_cast<void*>( display_obj.vframePtr[ each_frame ] ),
+					steps );
+			framebuff_mat[ each_frame ] = Scalar( 0, 0, 0 );
+		}
+	}
+
+	/* Configure the Standalone GPIO driver. */
+	cout << "Configuring standalone GPIO driver..." << endl;
+	{
+		/* The driver configuration table must be
+		configured with the virtual address first. */
+		extern XGpio_Config XGpio_ConfigTable[];
+		XGpio_ConfigTable[ GPIO_DEVICE_ID ].BaseAddress = gpio_mmap.getvaddr();
+
+		/* Configure the standalone driver itself. */
+		if ( XGpio_Initialize( &gpio_obj, GPIO_DEVICE_ID ) != XST_SUCCESS )
+			throw runtime_error( "gpio could not be configured!" );
+
+		/* Enable interrupts. Please note that for the second
+		method, the first bit corresponds to the first channel, whereas
+		the second bit corresponds to the second channel. Since only
+		the first channel are the inputs, only bit 1 needs to be enabled. */
+		XGpio_InterruptGlobalEnable( &gpio_obj );
+		XGpio_InterruptEnable( &gpio_obj, 1 );
+
+		/* Launching handler thread. */
+		if ( pthread_create( &gpio_pthread, NULL, gpio_handler, NULL ) > 0 )
+			throw runtime_error( "The input thread could not be created. ");
+	}
+
+	/* Configuring image processing filt IP core. */
+	cout << "Configuring filt core..." << endl;
+	{
+		/* Configure base addresses to virtual addresses. */
+		{
+			extern XFilt_Config XFilt_ConfigTable[];
+			extern XAxiVdma_Config XAxiVdma_ConfigTable[];
+			extern XGpio_Config XGpio_ConfigTable[];
+
+			XFilt_ConfigTable[ FILT_DEVICE_ID ].Control_bus_BaseAddress = filt_mmap_obj.getvaddr();
+			XAxiVdma_ConfigTable[ FILT_VDMA_DEVICE_ID ].BaseAddress = filt_vdma_mmap_0_obj.getvaddr();
+			XGpio_ConfigTable[ FILT_GPIO_DEVICE_ID ].BaseAddress = filt_gpio_mmap_obj.getvaddr();
+		}
+
+		/* Configure the standalone driver itself. Configure channel 1 of
+		the GPIO as an output. This GPIO is used to drive the vdma's fsync. */
+		if ( XGpio_Initialize( &fsync_obj, FILT_GPIO_DEVICE_ID ) != XST_SUCCESS )
+			throw runtime_error( "fsync_obj could not be configured!" );
+		if ( XGpio_SelfTest( &fsync_obj ) != XST_SUCCESS )
+			throw runtime_error( "fsync_obj failed the self test!" );
+		XGpio_SetDataDirection( &fsync_obj, 1, 0 );
+
+		/* Initialize the filt and vdma cores. */
+		{
+			filtvdma_frameConfig frameConfig =
+			{
+					static_cast<int>( DISPLAY_DEF_VMODE.height ),
+					static_cast<int>( DISPLAY_DEF_VMODE.width * sizeof( uint32_t ) ),
+					DISPLAY_STRIDE,
+					reinterpret_cast<UINTPTR*>( phy_framebuff_ptr ),
+					DISPLAY_NUM_FRAMES
+			};
+			int Status;
+			Status = filtvdma_setup( &filtvdma_obj, FILT_DEVICE_ID, FILT_VDMA_DEVICE_ID, &frameConfig );
+			if ( Status != XST_SUCCESS )
+			{
+				cerr << "Error message: " << Status << endl;
+				throw runtime_error( "Filt core could not be initialized." );
+			}
+		}
+	}
+
+	/* Run the main application. */
+	cout << "Running main application..." << endl;
+	{
+		const int raw_frame = 0;
+		int process_frame = 1;
+		int video_frame = 2;
+		Rect roi_rect( 0, 0, DISPLAY_ROI_WIDTH, DISPLAY_ROI_HEIGHT );
+
+		/* Start filt core's VDMA with the selected frames. */
+		if ( filtvdma_startreadframe( &filtvdma_obj, raw_frame ) != XST_SUCCESS )
+			throw runtime_error( "Couldn't set the read frame." );
+		if ( filtvdma_startwriteframe( &filtvdma_obj, process_frame ) != XST_SUCCESS )
+			throw runtime_error( "Couldn't set the write frame." );
+
+		/* Load single wasted frame to initialize filt core. */
+		XGpio_DiscreteWrite( &fsync_obj, 1, 0 );
+		XGpio_DiscreteWrite( &fsync_obj, 1, 1 );
+
+		/* Main loop of application. */
+		while ( true )
+		{
+			/* Set video frame. */
+			DisplayChangeFrame( &display_obj, video_frame );
+
+			/* Acquire process_frame. */
+			{
+				/* Capture new frame from video stream. */
+				Mat frame_0;
+				vstream_obj >> frame_0;
+
+				if ( USERIN_ENABLE_GRAY&userinput )
+				{
+					Mat gray_mat;
+					cv::cvtColor( frame_0, gray_mat, CV_BGR2GRAY );
+
+					int from_to[] = { 0,0, 0,1, 0,2 };
+					mixChannels( &gray_mat, 1, &frame_0, 1, from_to, 3 );
+				}
+				else if ( USERIN_ENABLE_SOBEL&userinput )
+				{
+					/* Based on example from http://opencvexamples.blogspot.com/ .*/
+					Mat gray_mat;
+					cv::cvtColor( frame_0, gray_mat, CV_BGR2GRAY );
+
+					Mat sobel_mat_0;
+					Sobel( gray_mat, sobel_mat, CV_8U, 1, 0);
+
+					Mat norm_mat;
+					normalize( sobel_mat, norm_mat, 0.0, 255.0, NORM_MINMAX );
+
+					int from_to[] = { 0,0, 0,1, 0,2 };
+					mixChannels( &norm_mat, 1, &frame_0, 1, from_to, 3 );
+				}
+
+
+				/* Determine region of interest. */
+				roi_mat = framebuff_mat[ raw_frame ]( roi_rect );
+
+				/* Mix extra channel into frame to meet the format of the display frame buffers. */
+				{
+					int from_to[] = { 0,0, 1,1, 2,2, };
+					mixChannels( &frame_0, 1, &roi_mat, 1, from_to, 3 );
+				}
+
+				/* Set the new process frame. */
+				int Status = filtvdma_setwriteframe( &filtvdma_obj, process_frame );
+				if ( Status != XST_SUCCESS )
+				{
+					cerr << "error message: " << Status << endl;
+					throw runtime_error( "Coult not set new read frame." );
+				}
+
+				/* Trigger VDMA with fsync. Wait until interrupt is triggered. */
+				XGpio_DiscreteWrite( &fsync_obj, 1, 0 );
+				filt_vdma_mmap_1_obj.wait();
+				filtvdma_clear_vdma_write_int( &filtvdma_obj );
+				filt_vdma_mmap_1_obj.ready();
+				XGpio_DiscreteWrite( &fsync_obj, 1, 1 );
+			}
+
+			/* Swap frames indices. */
+			{
+				int temp = process_frame;
+				process_frame = video_frame;
+				video_frame = temp;
+			}
+		}
+	}
+
+	return 0;
+}
+
+void* gpio_handler( void* param )
+{
+	( void ) param;
+	while ( true )
+	{
+		gpio_mmap.wait();
+		userinput = XGpio_DiscreteRead( &gpio_obj, 1 );
+		XGpio_InterruptClear( &gpio_obj, 1 );
+		XGpio_DiscreteWrite( &gpio_obj, 2, userinput );
+		gpio_mmap.ready();
+	}
+	return NULL;
+}
+
+void outbyte (char8 c)
+{
+	cout << c;
+}
+
+char8 inbyte(void)
+{
+	char c;
+	cin >> c;
+	return c;
+}

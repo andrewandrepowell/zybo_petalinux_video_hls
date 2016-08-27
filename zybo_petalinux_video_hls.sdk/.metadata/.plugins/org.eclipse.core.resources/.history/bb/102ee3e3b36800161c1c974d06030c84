@@ -1,0 +1,130 @@
+/*
+ * linuxmmap.cpp
+ *
+ *  Created on: Aug 5, 2016
+ *      Author: andrewandrepowell2
+ */
+#include "linuxmmap.h"
+
+linuxmmap::linuxmmap( off_t offset, size_t len ) :  isuio( false ), isintonly( false ), len( len )
+{
+	/* Memory-mapped virtual addresses are acquired in pages. */
+	size_t pagesize = sysconf( _SC_PAGE_SIZE );
+	page_base = ( offset / pagesize ) * pagesize;
+	page_offset = offset - page_base;
+
+	/* Perform the memory map between physical and virtual address. */
+	fd = open( "/dev/mem", O_SYNC | O_RDWR );
+	if ( fd < 0 )
+		throw std::runtime_error( "/dev/mem could not be opened!");
+	mem = reinterpret_cast<uint8_t*>(
+		mmap( NULL, page_offset + len,
+		PROT_READ | PROT_WRITE, MAP_SHARED, fd, page_base ) );
+	if ( mem == MAP_FAILED )
+		throw std::runtime_error( "Memory mapping couldn't be performed." );
+}
+
+linuxmmap::linuxmmap( int uio_id ) : isuio( true )
+{
+	/* Get length. */
+	{
+		char buff[ 64 ];
+		sprintf( buff, "/sys/class/uio/uio%d/maps", uio_id );
+		DIR* dir = opendir( buff );
+		if ( dir != NULL )
+		{
+
+		}
+		else if ( errno==ENOENT )
+		{
+
+		}
+		else
+		{
+
+		}
+		dir = opendir( "" )
+		sprintf( buff, "/sys/class/uio/uio%d/maps/map0/size", uio_id );
+		int fd_ = open( buff, O_RDONLY );
+		if ( fd_ < 0 )
+		{
+			fprintf( stderr, "%s could not be opened!", buff );
+			throw std::runtime_error( "See stderr");
+		}
+		read( fd_, buff, sizeof( buff ) );
+		char* start_ptr = buff+2;
+		char* end_ptr;
+		len = static_cast<size_t>( strtol( start_ptr, &end_ptr, 16 ) );
+		if ( start_ptr==end_ptr )
+		{
+			fprintf( stderr, "Could not convert %s to integer!", buff );
+			throw std::runtime_error( "See stderr" );
+		}
+		if ( close( fd_ ) < 0 )
+		{
+			throw std::runtime_error( "Couldn't close file descriptor to uio device size!" );
+		}
+	}
+
+	/* Perform the memory map between physical and virtual address. */
+	if ( !isintonly )
+	{
+		char buff[ 32 ];
+		sprintf( buff, "/dev/uio%d", uio_id );
+		fd = open( buff, O_SYNC | O_RDWR );
+		if ( fd < 0 )
+		{
+			fprintf( stderr, "%s could not be opened!", buff );
+			throw std::runtime_error( "/dev/mem could not be opened!");
+		}
+		page_offset = 0;
+		page_base = 0;
+		mem = reinterpret_cast<uint8_t*>(
+			mmap( NULL, page_offset + len,
+			PROT_READ | PROT_WRITE, MAP_SHARED, fd, page_base ) );
+		if ( mem == MAP_FAILED )
+			throw std::runtime_error( "Memory mapping couldn't be performed." );
+	}
+	else
+	{
+		fd = 0;
+		page_offset = 0;
+		page_base = 0;
+		mem = NULL;
+	}
+
+
+}
+
+linuxmmap::~linuxmmap()
+{
+	if  ( !isuio || !isintonly )
+	{
+		if ( munmap( mem, page_offset + len ) < 0 )
+			throw std::runtime_error( "Unmapping the memory couldn't be performed." );
+		if ( close( fd ) < 0 )
+			throw std::runtime_error( "Couldn't close file descriptor to memory." );
+	}
+}
+
+uint32_t linuxmmap::wait()
+{
+	if ( isuio )
+	{
+		uint32_t nints;
+		if ( read( fd, &nints, sizeof( nints ) ) != sizeof( nints ) )
+			throw std::runtime_error( "Interrupt failed!" );
+		return nints;
+	}
+	return 0;
+}
+
+void linuxmmap::ready()
+{
+	if ( isuio )
+	{
+		uint32_t enable = 1;
+		if ( write( fd, &enable, sizeof( enable ) ) != sizeof( enable ) )
+			throw std::runtime_error( "Resetting interrupt failed!" );
+	}
+}

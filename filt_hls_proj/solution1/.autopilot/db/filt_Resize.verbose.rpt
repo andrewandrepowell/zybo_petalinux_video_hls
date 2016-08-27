@@ -1,0 +1,768 @@
+
+
+================================================================
+== Vivado HLS Report for 'filt_Resize'
+================================================================
+* Date:           Fri Aug 26 09:20:27 2016
+
+* Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
+* Project:        filt_hls_proj
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z010clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  20.00|     16.96|        2.50|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+--------+-----+--------+---------+
+    |    Latency   |   Interval   | Pipeline|
+    | min |   max  | min |   max  |   Type  |
+    +-----+--------+-----+--------+---------+
+    |   46|  324721|   46|  324721|   none  |
+    +-----+--------+-----+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------+------------------------+-----+--------+-----+--------+---------+
+        |                                  |                        |    Latency   |   Interval   | Pipeline|
+        |             Instance             |         Module         | min |   max  | min |   max  |   Type  |
+        +----------------------------------+------------------------+-----+--------+-----+--------+---------+
+        |grp_filt_Resize_opr_linear_fu_74  |filt_Resize_opr_linear  |   45|  324720|   45|  324720|   none  |
+        +----------------------------------+------------------------+-----+--------+-----+--------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+-------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF  |  LUT  |
++-----------------+---------+-------+-------+-------+
+|DSP              |        -|      -|      -|      -|
+|Expression       |        -|      -|      0|      1|
+|FIFO             |        -|      -|      -|      -|
+|Instance         |        8|     52|   5853|   6182|
+|Memory           |        -|      -|      -|      -|
+|Multiplexer      |        -|      -|      -|     13|
+|Register         |        -|      -|     25|      -|
++-----------------+---------+-------+-------+-------+
+|Total            |        8|     52|   5878|   6196|
++-----------------+---------+-------+-------+-------+
+|Available        |      120|     80|  35200|  17600|
++-----------------+---------+-------+-------+-------+
+|Utilization (%)  |        6|     65|     16|     35|
++-----------------+---------+-------+-------+-------+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------+------------------------+---------+-------+------+------+
+    |             Instance             |         Module         | BRAM_18K| DSP48E|  FF  |  LUT |
+    +----------------------------------+------------------------+---------+-------+------+------+
+    |grp_filt_Resize_opr_linear_fu_74  |filt_Resize_opr_linear  |        8|     52|  5853|  6182|
+    +----------------------------------+------------------------+---------+-------+------+------+
+    |Total                             |                        |        8|     52|  5853|  6182|
+    +----------------------------------+------------------------+---------+-------+------+------+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------+----------+-------+---+----+------------+------------+
+    | Variable Name| Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------+----------+-------+---+----+------------+------------+
+    |ap_sig_95     |    or    |      0|  0|   1|           1|           1|
+    +--------------+----------+-------+---+----+------------+------------+
+    |Total         |          |      0|  0|   1|           1|           1|
+    +--------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------+----+-----------+-----+-----------+
+    |             Name            | LUT| Input Size| Bits| Total Bits|
+    +-----------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                    |   1|          3|    1|          3|
+    |p_dst_cols_V_blk_n           |   1|          2|    1|          2|
+    |p_dst_cols_V_out_blk_n       |   1|          2|    1|          2|
+    |p_dst_data_stream_0_V_write  |   1|          2|    1|          2|
+    |p_dst_data_stream_1_V_write  |   1|          2|    1|          2|
+    |p_dst_data_stream_2_V_write  |   1|          2|    1|          2|
+    |p_dst_data_stream_3_V_write  |   1|          2|    1|          2|
+    |p_dst_rows_V_blk_n           |   1|          2|    1|          2|
+    |p_dst_rows_V_out_blk_n       |   1|          2|    1|          2|
+    |p_src_data_stream_0_V_read   |   1|          2|    1|          2|
+    |p_src_data_stream_1_V_read   |   1|          2|    1|          2|
+    |p_src_data_stream_2_V_read   |   1|          2|    1|          2|
+    |p_src_data_stream_3_V_read   |   1|          2|    1|          2|
+    +-----------------------------+----+-----------+-----+-----------+
+    |Total                        |  13|         27|   13|         27|
+    +-----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------+----+----+-----+-----------+
+    |                       Name                       | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                         |   2|   0|    2|          0|
+    |ap_done_reg                                       |   1|   0|    1|          0|
+    |ap_reg_grp_filt_Resize_opr_linear_fu_74_ap_start  |   1|   0|    1|          0|
+    |p_dst_cols_V_read_reg_103                         |  11|   0|   11|          0|
+    |p_dst_rows_V_read_reg_98                          |  10|   0|   10|          0|
+    +--------------------------------------------------+----+----+-----+-----------+
+    |Total                                             |  25|   0|   25|          0|
+    +--------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------+-----+-----+------------+-----------------------+--------------+
+|           RTL Ports           | Dir | Bits|  Protocol  |     Source Object     |    C Type    |
++-------------------------------+-----+-----+------------+-----------------------+--------------+
+|ap_clk                         |  in |    1| ap_ctrl_hs |      filt_Resize      | return value |
+|ap_rst                         |  in |    1| ap_ctrl_hs |      filt_Resize      | return value |
+|ap_start                       |  in |    1| ap_ctrl_hs |      filt_Resize      | return value |
+|ap_done                        | out |    1| ap_ctrl_hs |      filt_Resize      | return value |
+|ap_continue                    |  in |    1| ap_ctrl_hs |      filt_Resize      | return value |
+|ap_idle                        | out |    1| ap_ctrl_hs |      filt_Resize      | return value |
+|ap_ready                       | out |    1| ap_ctrl_hs |      filt_Resize      | return value |
+|p_src_data_stream_0_V_dout     |  in |    8|   ap_fifo  | p_src_data_stream_0_V |    pointer   |
+|p_src_data_stream_0_V_empty_n  |  in |    1|   ap_fifo  | p_src_data_stream_0_V |    pointer   |
+|p_src_data_stream_0_V_read     | out |    1|   ap_fifo  | p_src_data_stream_0_V |    pointer   |
+|p_src_data_stream_1_V_dout     |  in |    8|   ap_fifo  | p_src_data_stream_1_V |    pointer   |
+|p_src_data_stream_1_V_empty_n  |  in |    1|   ap_fifo  | p_src_data_stream_1_V |    pointer   |
+|p_src_data_stream_1_V_read     | out |    1|   ap_fifo  | p_src_data_stream_1_V |    pointer   |
+|p_src_data_stream_2_V_dout     |  in |    8|   ap_fifo  | p_src_data_stream_2_V |    pointer   |
+|p_src_data_stream_2_V_empty_n  |  in |    1|   ap_fifo  | p_src_data_stream_2_V |    pointer   |
+|p_src_data_stream_2_V_read     | out |    1|   ap_fifo  | p_src_data_stream_2_V |    pointer   |
+|p_src_data_stream_3_V_dout     |  in |    8|   ap_fifo  | p_src_data_stream_3_V |    pointer   |
+|p_src_data_stream_3_V_empty_n  |  in |    1|   ap_fifo  | p_src_data_stream_3_V |    pointer   |
+|p_src_data_stream_3_V_read     | out |    1|   ap_fifo  | p_src_data_stream_3_V |    pointer   |
+|p_dst_rows_V_dout              |  in |   10|   ap_fifo  |      p_dst_rows_V     |    pointer   |
+|p_dst_rows_V_empty_n           |  in |    1|   ap_fifo  |      p_dst_rows_V     |    pointer   |
+|p_dst_rows_V_read              | out |    1|   ap_fifo  |      p_dst_rows_V     |    pointer   |
+|p_dst_cols_V_dout              |  in |   11|   ap_fifo  |      p_dst_cols_V     |    pointer   |
+|p_dst_cols_V_empty_n           |  in |    1|   ap_fifo  |      p_dst_cols_V     |    pointer   |
+|p_dst_cols_V_read              | out |    1|   ap_fifo  |      p_dst_cols_V     |    pointer   |
+|p_dst_data_stream_0_V_din      | out |    8|   ap_fifo  | p_dst_data_stream_0_V |    pointer   |
+|p_dst_data_stream_0_V_full_n   |  in |    1|   ap_fifo  | p_dst_data_stream_0_V |    pointer   |
+|p_dst_data_stream_0_V_write    | out |    1|   ap_fifo  | p_dst_data_stream_0_V |    pointer   |
+|p_dst_data_stream_1_V_din      | out |    8|   ap_fifo  | p_dst_data_stream_1_V |    pointer   |
+|p_dst_data_stream_1_V_full_n   |  in |    1|   ap_fifo  | p_dst_data_stream_1_V |    pointer   |
+|p_dst_data_stream_1_V_write    | out |    1|   ap_fifo  | p_dst_data_stream_1_V |    pointer   |
+|p_dst_data_stream_2_V_din      | out |    8|   ap_fifo  | p_dst_data_stream_2_V |    pointer   |
+|p_dst_data_stream_2_V_full_n   |  in |    1|   ap_fifo  | p_dst_data_stream_2_V |    pointer   |
+|p_dst_data_stream_2_V_write    | out |    1|   ap_fifo  | p_dst_data_stream_2_V |    pointer   |
+|p_dst_data_stream_3_V_din      | out |    8|   ap_fifo  | p_dst_data_stream_3_V |    pointer   |
+|p_dst_data_stream_3_V_full_n   |  in |    1|   ap_fifo  | p_dst_data_stream_3_V |    pointer   |
+|p_dst_data_stream_3_V_write    | out |    1|   ap_fifo  | p_dst_data_stream_3_V |    pointer   |
+|p_dst_rows_V_out_din           | out |   10|   ap_fifo  |    p_dst_rows_V_out   |    pointer   |
+|p_dst_rows_V_out_full_n        |  in |    1|   ap_fifo  |    p_dst_rows_V_out   |    pointer   |
+|p_dst_rows_V_out_write         | out |    1|   ap_fifo  |    p_dst_rows_V_out   |    pointer   |
+|p_dst_cols_V_out_din           | out |   11|   ap_fifo  |    p_dst_cols_V_out   |    pointer   |
+|p_dst_cols_V_out_full_n        |  in |    1|   ap_fifo  |    p_dst_cols_V_out   |    pointer   |
+|p_dst_cols_V_out_write         | out |    1|   ap_fifo  |    p_dst_cols_V_out   |    pointer   |
++-------------------------------+-----+-----+------------+-----------------------+--------------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 9.26ns
+ST_1: p_dst_rows_V_read [1/1] 4.63ns
+entry:10  %p_dst_rows_V_read = call i10 @_ssdm_op_Read.ap_fifo.i10P(i10* %p_dst_rows_V)
+
+ST_1: p_dst_cols_V_read [1/1] 4.63ns
+entry:11  %p_dst_cols_V_read = call i11 @_ssdm_op_Read.ap_fifo.i11P(i11* %p_dst_cols_V)
+
+ST_1: stg_5 [1/1] 4.63ns
+entry:13  call void @_ssdm_op_Write.ap_fifo.i10P(i10* %p_dst_rows_V_out, i10 %p_dst_rows_V_read)
+
+ST_1: stg_6 [1/1] 4.63ns
+entry:15  call void @_ssdm_op_Write.ap_fifo.i11P(i11* %p_dst_cols_V_out, i11 %p_dst_cols_V_read)
+
+ST_1: stg_7 [2/2] 3.48ns
+entry:16  call fastcc void @filt_Resize_opr_linear(i8* %p_src_data_stream_0_V, i8* %p_src_data_stream_1_V, i8* %p_src_data_stream_2_V, i8* %p_src_data_stream_3_V, i10 %p_dst_rows_V_read, i11 %p_dst_cols_V_read, i8* %p_dst_data_stream_0_V, i8* %p_dst_data_stream_1_V, i8* %p_dst_data_stream_2_V, i8* %p_dst_data_stream_3_V)
+
+
+ <State 2>: 0.00ns
+ST_2: stg_8 [1/1] 0.00ns
+entry:0  call void (...)* @_ssdm_op_SpecInterface(i8* %p_dst_data_stream_3_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_9 [1/1] 0.00ns
+entry:1  call void (...)* @_ssdm_op_SpecInterface(i8* %p_dst_data_stream_2_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_10 [1/1] 0.00ns
+entry:2  call void (...)* @_ssdm_op_SpecInterface(i8* %p_dst_data_stream_1_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_11 [1/1] 0.00ns
+entry:3  call void (...)* @_ssdm_op_SpecInterface(i8* %p_dst_data_stream_0_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_12 [1/1] 0.00ns
+entry:4  call void (...)* @_ssdm_op_SpecInterface(i8* %p_src_data_stream_3_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_13 [1/1] 0.00ns
+entry:5  call void (...)* @_ssdm_op_SpecInterface(i8* %p_src_data_stream_2_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_14 [1/1] 0.00ns
+entry:6  call void (...)* @_ssdm_op_SpecInterface(i8* %p_src_data_stream_1_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_15 [1/1] 0.00ns
+entry:7  call void (...)* @_ssdm_op_SpecInterface(i8* %p_src_data_stream_0_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_16 [1/1] 0.00ns
+entry:8  call void (...)* @_ssdm_op_SpecInterface(i11* %p_dst_cols_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_17 [1/1] 0.00ns
+entry:9  call void (...)* @_ssdm_op_SpecInterface(i10* %p_dst_rows_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_18 [1/1] 0.00ns
+entry:12  call void (...)* @_ssdm_op_SpecInterface(i10* %p_dst_rows_V_out, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_19 [1/1] 0.00ns
+entry:14  call void (...)* @_ssdm_op_SpecInterface(i11* %p_dst_cols_V_out, [8 x i8]* @ap_fifo_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str)
+
+ST_2: stg_20 [1/2] 0.00ns
+entry:16  call fastcc void @filt_Resize_opr_linear(i8* %p_src_data_stream_0_V, i8* %p_src_data_stream_1_V, i8* %p_src_data_stream_2_V, i8* %p_src_data_stream_3_V, i10 %p_dst_rows_V_read, i11 %p_dst_cols_V_read, i8* %p_dst_data_stream_0_V, i8* %p_dst_data_stream_1_V, i8* %p_dst_data_stream_2_V, i8* %p_dst_data_stream_3_V)
+
+ST_2: stg_21 [1/1] 0.00ns
+entry:17  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is clock enabled: 0
+- Is pipelined: 0
+- Is top level: 0
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ p_src_data_stream_0_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_src_data_stream_1_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_src_data_stream_2_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_src_data_stream_3_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_dst_rows_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_dst_cols_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_dst_data_stream_0_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_dst_data_stream_1_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_dst_data_stream_2_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_dst_data_stream_3_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_dst_rows_V_out]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_dst_cols_V_out]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+p_dst_rows_V_read (read         ) [ 001]
+p_dst_cols_V_read (read         ) [ 001]
+stg_5             (write        ) [ 000]
+stg_6             (write        ) [ 000]
+stg_8             (specinterface) [ 000]
+stg_9             (specinterface) [ 000]
+stg_10            (specinterface) [ 000]
+stg_11            (specinterface) [ 000]
+stg_12            (specinterface) [ 000]
+stg_13            (specinterface) [ 000]
+stg_14            (specinterface) [ 000]
+stg_15            (specinterface) [ 000]
+stg_16            (specinterface) [ 000]
+stg_17            (specinterface) [ 000]
+stg_18            (specinterface) [ 000]
+stg_19            (specinterface) [ 000]
+stg_20            (call         ) [ 000]
+stg_21            (ret          ) [ 000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="p_src_data_stream_0_V">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_src_data_stream_0_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="p_src_data_stream_1_V">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_src_data_stream_1_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="p_src_data_stream_2_V">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_src_data_stream_2_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1000" name="p_src_data_stream_3_V">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_src_data_stream_3_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1000" name="p_dst_rows_V">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_dst_rows_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1000" name="p_dst_cols_V">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_dst_cols_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1000" name="p_dst_data_stream_0_V">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_dst_data_stream_0_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1000" name="p_dst_data_stream_1_V">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_dst_data_stream_1_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1000" name="p_dst_data_stream_2_V">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_dst_data_stream_2_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1000" name="p_dst_data_stream_3_V">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_dst_data_stream_3_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1000" name="p_dst_rows_V_out">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_dst_rows_V_out"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1000" name="p_dst_cols_V_out">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_dst_cols_V_out"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_fifo.i10P"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_fifo.i11P"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Write.ap_fifo.i10P"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Write.ap_fifo.i11P"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="filt_Resize_opr_linear"/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ap_fifo_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1004" name="p_dst_rows_V_read_read_fu_46">
+<pin_list>
+<pin id="47" dir="0" index="0" bw="10" slack="0"/>
+<pin id="48" dir="0" index="1" bw="10" slack="0"/>
+<pin id="49" dir="1" index="2" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_dst_rows_V_read/1 "/>
+</bind>
+</comp>
+
+<comp id="52" class="1004" name="p_dst_cols_V_read_read_fu_52">
+<pin_list>
+<pin id="53" dir="0" index="0" bw="11" slack="0"/>
+<pin id="54" dir="0" index="1" bw="11" slack="0"/>
+<pin id="55" dir="1" index="2" bw="11" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_dst_cols_V_read/1 "/>
+</bind>
+</comp>
+
+<comp id="58" class="1004" name="stg_5_write_fu_58">
+<pin_list>
+<pin id="59" dir="0" index="0" bw="0" slack="0"/>
+<pin id="60" dir="0" index="1" bw="10" slack="0"/>
+<pin id="61" dir="0" index="2" bw="10" slack="0"/>
+<pin id="62" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="stg_5/1 "/>
+</bind>
+</comp>
+
+<comp id="66" class="1004" name="stg_6_write_fu_66">
+<pin_list>
+<pin id="67" dir="0" index="0" bw="0" slack="0"/>
+<pin id="68" dir="0" index="1" bw="11" slack="0"/>
+<pin id="69" dir="0" index="2" bw="11" slack="0"/>
+<pin id="70" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="stg_6/1 "/>
+</bind>
+</comp>
+
+<comp id="74" class="1004" name="grp_filt_Resize_opr_linear_fu_74">
+<pin_list>
+<pin id="75" dir="0" index="0" bw="0" slack="0"/>
+<pin id="76" dir="0" index="1" bw="8" slack="0"/>
+<pin id="77" dir="0" index="2" bw="8" slack="0"/>
+<pin id="78" dir="0" index="3" bw="8" slack="0"/>
+<pin id="79" dir="0" index="4" bw="8" slack="0"/>
+<pin id="80" dir="0" index="5" bw="10" slack="0"/>
+<pin id="81" dir="0" index="6" bw="11" slack="0"/>
+<pin id="82" dir="0" index="7" bw="8" slack="0"/>
+<pin id="83" dir="0" index="8" bw="8" slack="0"/>
+<pin id="84" dir="0" index="9" bw="8" slack="0"/>
+<pin id="85" dir="0" index="10" bw="8" slack="0"/>
+<pin id="86" dir="1" index="11" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="stg_7/1 "/>
+</bind>
+</comp>
+
+<comp id="98" class="1005" name="p_dst_rows_V_read_reg_98">
+<pin_list>
+<pin id="99" dir="0" index="0" bw="10" slack="1"/>
+<pin id="100" dir="1" index="1" bw="10" slack="1"/>
+</pin_list>
+<bind>
+<opset="p_dst_rows_V_read "/>
+</bind>
+</comp>
+
+<comp id="103" class="1005" name="p_dst_cols_V_read_reg_103">
+<pin_list>
+<pin id="104" dir="0" index="0" bw="11" slack="1"/>
+<pin id="105" dir="1" index="1" bw="11" slack="1"/>
+</pin_list>
+<bind>
+<opset="p_dst_cols_V_read "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="50"><net_src comp="24" pin="0"/><net_sink comp="46" pin=0"/></net>
+
+<net id="51"><net_src comp="8" pin="0"/><net_sink comp="46" pin=1"/></net>
+
+<net id="56"><net_src comp="26" pin="0"/><net_sink comp="52" pin=0"/></net>
+
+<net id="57"><net_src comp="10" pin="0"/><net_sink comp="52" pin=1"/></net>
+
+<net id="63"><net_src comp="28" pin="0"/><net_sink comp="58" pin=0"/></net>
+
+<net id="64"><net_src comp="20" pin="0"/><net_sink comp="58" pin=1"/></net>
+
+<net id="65"><net_src comp="46" pin="2"/><net_sink comp="58" pin=2"/></net>
+
+<net id="71"><net_src comp="30" pin="0"/><net_sink comp="66" pin=0"/></net>
+
+<net id="72"><net_src comp="22" pin="0"/><net_sink comp="66" pin=1"/></net>
+
+<net id="73"><net_src comp="52" pin="2"/><net_sink comp="66" pin=2"/></net>
+
+<net id="87"><net_src comp="32" pin="0"/><net_sink comp="74" pin=0"/></net>
+
+<net id="88"><net_src comp="0" pin="0"/><net_sink comp="74" pin=1"/></net>
+
+<net id="89"><net_src comp="2" pin="0"/><net_sink comp="74" pin=2"/></net>
+
+<net id="90"><net_src comp="4" pin="0"/><net_sink comp="74" pin=3"/></net>
+
+<net id="91"><net_src comp="6" pin="0"/><net_sink comp="74" pin=4"/></net>
+
+<net id="92"><net_src comp="46" pin="2"/><net_sink comp="74" pin=5"/></net>
+
+<net id="93"><net_src comp="52" pin="2"/><net_sink comp="74" pin=6"/></net>
+
+<net id="94"><net_src comp="12" pin="0"/><net_sink comp="74" pin=7"/></net>
+
+<net id="95"><net_src comp="14" pin="0"/><net_sink comp="74" pin=8"/></net>
+
+<net id="96"><net_src comp="16" pin="0"/><net_sink comp="74" pin=9"/></net>
+
+<net id="97"><net_src comp="18" pin="0"/><net_sink comp="74" pin=10"/></net>
+
+<net id="101"><net_src comp="46" pin="2"/><net_sink comp="98" pin=0"/></net>
+
+<net id="102"><net_src comp="98" pin="1"/><net_sink comp="74" pin=5"/></net>
+
+<net id="106"><net_src comp="52" pin="2"/><net_sink comp="103" pin=0"/></net>
+
+<net id="107"><net_src comp="103" pin="1"/><net_sink comp="74" pin=6"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: p_dst_data_stream_0_V | {1 2 }
+	Port: p_dst_data_stream_1_V | {1 2 }
+	Port: p_dst_data_stream_2_V | {1 2 }
+	Port: p_dst_data_stream_3_V | {1 2 }
+	Port: p_dst_rows_V_out | {1 }
+	Port: p_dst_cols_V_out | {1 }
+ - Input state : 
+	Port: filt_Resize : p_src_data_stream_0_V | {1 2 }
+	Port: filt_Resize : p_src_data_stream_1_V | {1 2 }
+	Port: filt_Resize : p_src_data_stream_2_V | {1 2 }
+	Port: filt_Resize : p_src_data_stream_3_V | {1 2 }
+	Port: filt_Resize : p_dst_rows_V | {1 }
+	Port: filt_Resize : p_dst_cols_V | {1 }
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|----------------------------------|---------|---------|---------|---------|---------|
+| Operation|          Functional Unit         |   BRAM  |  DSP48E |  Delay  |    FF   |   LUT   |
+|----------|----------------------------------|---------|---------|---------|---------|---------|
+|   call   | grp_filt_Resize_opr_linear_fu_74 |    8    |    52   |  23.565 |   5825  |   5975  |
+|----------|----------------------------------|---------|---------|---------|---------|---------|
+|   read   |   p_dst_rows_V_read_read_fu_46   |    0    |    0    |    0    |    0    |    0    |
+|          |   p_dst_cols_V_read_read_fu_52   |    0    |    0    |    0    |    0    |    0    |
+|----------|----------------------------------|---------|---------|---------|---------|---------|
+|   write  |         stg_5_write_fu_58        |    0    |    0    |    0    |    0    |    0    |
+|          |         stg_6_write_fu_66        |    0    |    0    |    0    |    0    |    0    |
+|----------|----------------------------------|---------|---------|---------|---------|---------|
+|   Total  |                                  |    8    |    52   |  23.565 |   5825  |   5975  |
+|----------|----------------------------------|---------|---------|---------|---------|---------|
+
+Memories:
+N/A
+
+* Register list:
++-------------------------+--------+
+|                         |   FF   |
++-------------------------+--------+
+|p_dst_cols_V_read_reg_103|   11   |
+| p_dst_rows_V_read_reg_98|   10   |
++-------------------------+--------+
+|          Total          |   21   |
++-------------------------+--------+
+
+* Multiplexer (MUX) list: 
+|----------------------------------|------|------|------|--------||---------||---------|
+|               Comp               |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|----------------------------------|------|------|------|--------||---------||---------|
+| grp_filt_Resize_opr_linear_fu_74 |  p5  |   2  |  10  |   20   ||    10   |
+| grp_filt_Resize_opr_linear_fu_74 |  p6  |   2  |  11  |   22   ||    11   |
+|----------------------------------|------|------|------|--------||---------||---------|
+|               Total              |      |      |      |   42   ||  3.142  ||    21   |
+|----------------------------------|------|------|------|--------||---------||---------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+--------+
+|           |  BRAM  | DSP48E |  Delay |   FF   |   LUT  |
++-----------+--------+--------+--------+--------+--------+
+|  Function |    8   |   52   |   23   |  5825  |  5975  |
+|   Memory  |    -   |    -   |    -   |    -   |    -   |
+|Multiplexer|    -   |    -   |    3   |    -   |   21   |
+|  Register |    -   |    -   |    -   |   21   |    -   |
++-----------+--------+--------+--------+--------+--------+
+|   Total   |    8   |   52   |   26   |  5846  |  5996  |
++-----------+--------+--------+--------+--------+--------+

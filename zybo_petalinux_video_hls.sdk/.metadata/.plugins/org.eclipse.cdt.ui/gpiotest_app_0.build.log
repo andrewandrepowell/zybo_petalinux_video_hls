@@ -1,0 +1,21 @@
+12:28:52 **** Auto Build of configuration Debug for project gpiotest_app_0 ****
+make all 
+Building file: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xgpio_g.c
+Invoking: ARM v7 Linux g++ compiler
+arm-linux-gnueabihf-g++ -Wall -O0 -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0" -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx" -c -fmessage-length=0 -MT"src/xilinx/xgpio_g.o" -MMD -MP -MF"src/xilinx/xgpio_g.d" -MT"src/xilinx/xgpio_g.o" -o "src/xilinx/xgpio_g.o" "/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xgpio_g.c"
+Finished building: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xgpio_g.c
+ 
+Building target: gpiotest_app_0.elf
+Invoking: ARM v7 Linux g++ linker
+arm-linux-gnueabihf-g++  -o "gpiotest_app_0.elf"  ./src/xilinx/xgpio.o ./src/xilinx/xgpio_extra.o ./src/xilinx/xgpio_g.o ./src/xilinx/xgpio_intr.o ./src/xilinx/xgpio_selftest.o ./src/xilinx/xgpio_sinit.o ./src/xilinx/xil_assert.o ./src/xilinx/xil_io.o ./src/xilinx/xil_printf.o  ./src/linuxmmap.o ./src/main.o   -lpthread
+Finished building target: gpiotest_app_0.elf
+ 
+Invoking: ARM v7 Linux Print Size
+arm-linux-gnueabihf-size gpiotest_app_0.elf  |tee "gpiotest_app_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18746	    504	    368	  19618	   4ca2	gpiotest_app_0.elf
+Finished building: gpiotest_app_0.elf.size
+ 
+
+12:28:53 Build Finished (took 253ms)
+

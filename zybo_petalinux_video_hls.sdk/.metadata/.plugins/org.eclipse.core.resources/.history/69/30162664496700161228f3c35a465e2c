@@ -1,0 +1,56 @@
+/*
+ * Empty C++ Application
+ */
+#include <iostream>
+#include <stdint.h>
+#include <stdexcept>
+#include <pthread.h>
+#include "xgpio.h"
+#include "xparameters.h"
+#include "linuxmmap.h"
+using namespace std;
+
+#define GPIO_UIO_ID			( 0 )
+
+void* gpio_handler( void* param );
+
+/* Objects related to the GPIO. */
+linuxmmap gpio_mmap( 0 );
+
+/* Objects for receiving input from user in a separate thread. */
+pthread_t gpio_pthread;
+
+int main()
+{
+	if ( pthread_create( &gpio_pthread, NULL, gpio_handler, NULL ) > 0 )
+	{
+		throw runtime_error( "The input thread could not be created. ");
+	}
+
+	while ( cin.get() != 'q' )
+		continue;
+
+	return 0;
+}
+
+void* gpio_handler( void* param )
+{
+	( void ) param;
+	while ( true )
+	{
+
+	}
+	return NULL;
+}
+
+void outbyte (char8 c)
+{
+	cout << c;
+}
+
+char8 inbyte(void)
+{
+	char c;
+	cin >> c;
+	return c;
+}

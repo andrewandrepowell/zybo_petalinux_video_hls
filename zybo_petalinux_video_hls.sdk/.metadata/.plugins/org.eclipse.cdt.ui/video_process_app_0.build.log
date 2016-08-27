@@ -1,0 +1,21 @@
+10:59:30 **** Auto Build of configuration Debug for project video_process_app_0 ****
+make all 
+Building file: ../src/main.cc
+Invoking: ARM v7 Linux g++ compiler
+arm-linux-gnueabihf-g++ -Wall -O0 -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx" -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0" -I/opt/opencv-3.1.0/modules/video/include -I/opt/opencv-3.1.0/modules/imgproc/include -I/opt/opencv-3.1.0/modules/videoio/include -I/opt/opencv-3.1.0/modules/imgcodecs/include -I/opt/opencv-3.1.0/modules/highgui/include -I/opt/opencv-3.1.0/modules/core/include -c -fmessage-length=0 -MT"src/main.o" -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cc"
+Finished building: ../src/main.cc
+ 
+Building target: video_process_app_0.elf
+Invoking: ARM v7 Linux g++ linker
+arm-linux-gnueabihf-g++ -L/opt/opencv-armv7/lib -L/opt/opencv-armv7/3rdparty/lib -o "video_process_app_0.elf"  ./src/xilinx/display_ctrl.o ./src/xilinx/display_demo.o ./src/xilinx/filt_vdma.o ./src/xilinx/xaxivdma.o ./src/xilinx/xaxivdma_channel.o ./src/xilinx/xaxivdma_g.o ./src/xilinx/xaxivdma_intr.o ./src/xilinx/xaxivdma_selftest.o ./src/xilinx/xaxivdma_sinit.o ./src/xilinx/xfilt.o ./src/xilinx/xfilt_g.o ./src/xilinx/xfilt_sinit.o ./src/xilinx/xgpio.o ./src/xilinx/xgpio_extra.o ./src/xilinx/xgpio_g.o ./src/xilinx/xgpio_intr.o ./src/xilinx/xgpio_selftest.o ./src/xilinx/xgpio_sinit.o ./src/xilinx/xil_assert.o ./src/xilinx/xil_io.o ./src/xilinx/xil_printf.o  ./src/linuxmmap.o ./src/main.o   -lopencv_videoio -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lopencv_photo -lopencv_video -lopencv_features2d -lopencv_objdetect -lopencv_shape -lopencv_core -lopencv_ml -llibtiff -llibwebp -lIlmImf -llibpng -llibjpeg -llibjasper -lzlib -lpthread -ldl -lrt
+Finished building target: video_process_app_0.elf
+ 
+Invoking: ARM v7 Linux Print Size
+arm-linux-gnueabihf-size video_process_app_0.elf  |tee "video_process_app_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+3209985	  39464	 626728	3876177	 3b2551	video_process_app_0.elf
+Finished building: video_process_app_0.elf.size
+ 
+
+10:59:31 Build Finished (took 1s.189ms)
+

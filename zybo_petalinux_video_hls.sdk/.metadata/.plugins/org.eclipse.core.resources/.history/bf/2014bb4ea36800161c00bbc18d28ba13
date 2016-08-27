@@ -1,0 +1,32 @@
+/*
+ * Empty C++ Application
+ */
+#include <iostream>
+#include <stdint.h>
+#include <stdexcept>
+#include "xparameters.h"
+#include "display_ctrl.h"
+#include "linuxmmap.h"
+#include "xil_printf.h"
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
+using namespace std;
+using namespace cv;
+
+int main()
+{
+	return 0;
+}
+
+void outbyte (char8 c)
+{
+	cout << c;
+}
+
+char8 inbyte(void)
+{
+	char c;
+	cin >> c;
+	return c;
+}

@@ -1,0 +1,41 @@
+18:51:16 **** Auto Build of configuration Debug for project filttest_app_0 ****
+make all 
+Building file: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/filt_vdma.c
+Invoking: ARM v7 Linux g++ compiler
+arm-linux-gnueabihf-g++ -D__linux__ -Wall -O0 -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx" -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0" -I/opt/opencv-3.1.0/modules/video/include -I/opt/opencv-3.1.0/modules/imgproc/include -I/opt/opencv-3.1.0/modules/videoio/include -I/opt/opencv-3.1.0/modules/imgcodecs/include -I/opt/opencv-3.1.0/modules/highgui/include -I/opt/opencv-3.1.0/modules/core/include -c -fmessage-length=0 -MT"src/xilinx/filt_vdma.o" -MMD -MP -MF"src/xilinx/filt_vdma.d" -MT"src/xilinx/filt_vdma.o" -o "src/xilinx/filt_vdma.o" "/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/filt_vdma.c"
+Finished building: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/filt_vdma.c
+ 
+Building file: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xfilt.c
+Invoking: ARM v7 Linux g++ compiler
+arm-linux-gnueabihf-g++ -D__linux__ -Wall -O0 -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx" -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0" -I/opt/opencv-3.1.0/modules/video/include -I/opt/opencv-3.1.0/modules/imgproc/include -I/opt/opencv-3.1.0/modules/videoio/include -I/opt/opencv-3.1.0/modules/imgcodecs/include -I/opt/opencv-3.1.0/modules/highgui/include -I/opt/opencv-3.1.0/modules/core/include -c -fmessage-length=0 -MT"src/xilinx/xfilt.o" -MMD -MP -MF"src/xilinx/xfilt.d" -MT"src/xilinx/xfilt.o" -o "src/xilinx/xfilt.o" "/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xfilt.c"
+Finished building: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xfilt.c
+ 
+Building file: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xfilt_g.c
+Invoking: ARM v7 Linux g++ compiler
+arm-linux-gnueabihf-g++ -D__linux__ -Wall -O0 -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx" -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0" -I/opt/opencv-3.1.0/modules/video/include -I/opt/opencv-3.1.0/modules/imgproc/include -I/opt/opencv-3.1.0/modules/videoio/include -I/opt/opencv-3.1.0/modules/imgcodecs/include -I/opt/opencv-3.1.0/modules/highgui/include -I/opt/opencv-3.1.0/modules/core/include -c -fmessage-length=0 -MT"src/xilinx/xfilt_g.o" -MMD -MP -MF"src/xilinx/xfilt_g.d" -MT"src/xilinx/xfilt_g.o" -o "src/xilinx/xfilt_g.o" "/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xfilt_g.c"
+Finished building: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xfilt_g.c
+ 
+Building file: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xfilt_sinit.c
+Invoking: ARM v7 Linux g++ compiler
+arm-linux-gnueabihf-g++ -D__linux__ -Wall -O0 -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx" -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0" -I/opt/opencv-3.1.0/modules/video/include -I/opt/opencv-3.1.0/modules/imgproc/include -I/opt/opencv-3.1.0/modules/videoio/include -I/opt/opencv-3.1.0/modules/imgcodecs/include -I/opt/opencv-3.1.0/modules/highgui/include -I/opt/opencv-3.1.0/modules/core/include -c -fmessage-length=0 -MT"src/xilinx/xfilt_sinit.o" -MMD -MP -MF"src/xilinx/xfilt_sinit.d" -MT"src/xilinx/xfilt_sinit.o" -o "src/xilinx/xfilt_sinit.o" "/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xfilt_sinit.c"
+Finished building: /opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx/xfilt_sinit.c
+ 
+Building file: ../src/main.cc
+Invoking: ARM v7 Linux g++ compiler
+arm-linux-gnueabihf-g++ -D__linux__ -Wall -O0 -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0/xilinx" -I"/opt/Xilinx/Projects/zybo_petalinux_video_hls/zybo_petalinux_video_hls.sdk/share_0" -I/opt/opencv-3.1.0/modules/video/include -I/opt/opencv-3.1.0/modules/imgproc/include -I/opt/opencv-3.1.0/modules/videoio/include -I/opt/opencv-3.1.0/modules/imgcodecs/include -I/opt/opencv-3.1.0/modules/highgui/include -I/opt/opencv-3.1.0/modules/core/include -c -fmessage-length=0 -MT"src/main.o" -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cc"
+Finished building: ../src/main.cc
+ 
+Building target: filttest_app_0.elf
+Invoking: ARM v7 Linux g++ linker
+arm-linux-gnueabihf-g++ -L/opt/opencv-armv7/lib -L/opt/opencv-armv7/3rdparty/lib -o "filttest_app_0.elf"  ./src/xilinx/display_ctrl.o ./src/xilinx/filt_vdma.o ./src/xilinx/xaxivdma.o ./src/xilinx/xaxivdma_channel.o ./src/xilinx/xaxivdma_g.o ./src/xilinx/xaxivdma_intr.o ./src/xilinx/xaxivdma_selftest.o ./src/xilinx/xaxivdma_sinit.o ./src/xilinx/xfilt.o ./src/xilinx/xfilt_g.o ./src/xilinx/xfilt_sinit.o ./src/xilinx/xgpio.o ./src/xilinx/xgpio_extra.o ./src/xilinx/xgpio_g.o ./src/xilinx/xgpio_intr.o ./src/xilinx/xgpio_selftest.o ./src/xilinx/xgpio_sinit.o ./src/xilinx/xil_assert.o ./src/xilinx/xil_io.o ./src/xilinx/xil_printf.o ./src/xilinx/xplatform_info.o  ./src/linuxmmap.o ./src/main.o   -lopencv_videoio -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lopencv_photo -lopencv_video -lopencv_features2d -lopencv_objdetect -lopencv_shape -lopencv_core -lopencv_ml -llibtiff -llibwebp -lIlmImf -llibpng -llibjpeg -llibjasper -lzlib -lpthread -ldl -lrt
+Finished building target: filttest_app_0.elf
+ 
+Invoking: ARM v7 Linux Print Size
+arm-linux-gnueabihf-size filttest_app_0.elf  |tee "filttest_app_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+2827802	  33664	 626728	3488194	 3539c2	filttest_app_0.elf
+Finished building: filttest_app_0.elf.size
+ 
+
+18:51:18 Build Finished (took 1s.781ms)
+

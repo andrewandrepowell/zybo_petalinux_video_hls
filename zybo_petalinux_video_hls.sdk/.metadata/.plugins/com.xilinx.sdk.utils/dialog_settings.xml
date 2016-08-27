@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="/opt/Xilinx/Projects/zybo_petalinux_video_hls/petalinux_proj/images/linux" key="bootgen_files_selection"/>
+	<item value="/opt/Xilinx/Projects/zybo_petalinux_video_hls/petalinux_proj/images/linux" key="zynq_flash_files_selection"/>
+	<item value="/opt/Xilinx/Projects/zybo_petalinux_video_hls/petalinux_proj/images/linux" key="last_stored_selection"/>
+</section>

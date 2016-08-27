@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="filt" xd:componentRef="filt" xd:initiationInterval="324723" xd:clockPeriod="20.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_CONTROL_BUS" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="src_axi.data" xd:originalName="src_axi" xd:direction="in" xd:interfaceRef="src_axi" xd:busTypeRef="axis" xd:dataWidth="32"/>
+  <xd:arg xd:name="src_axi.keep" xd:originalName="src_axi" xd:direction="in" xd:interfaceRef="src_axi" xd:busTypeRef="axis" xd:dataWidth="4"/>
+  <xd:arg xd:name="src_axi.strb" xd:originalName="src_axi" xd:direction="in" xd:interfaceRef="src_axi" xd:busTypeRef="axis" xd:dataWidth="4"/>
+  <xd:arg xd:name="src_axi.user" xd:originalName="src_axi" xd:direction="in" xd:interfaceRef="src_axi" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="src_axi.last" xd:originalName="src_axi" xd:direction="in" xd:interfaceRef="src_axi" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="src_axi.id" xd:originalName="src_axi" xd:direction="in" xd:interfaceRef="src_axi" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="src_axi.dest" xd:originalName="src_axi" xd:direction="in" xd:interfaceRef="src_axi" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="dst_axi.data" xd:originalName="dst_axi" xd:direction="out" xd:interfaceRef="dst_axi" xd:busTypeRef="axis" xd:dataWidth="32"/>
+  <xd:arg xd:name="dst_axi.keep" xd:originalName="dst_axi" xd:direction="out" xd:interfaceRef="dst_axi" xd:busTypeRef="axis" xd:dataWidth="4"/>
+  <xd:arg xd:name="dst_axi.strb" xd:originalName="dst_axi" xd:direction="out" xd:interfaceRef="dst_axi" xd:busTypeRef="axis" xd:dataWidth="4"/>
+  <xd:arg xd:name="dst_axi.user" xd:originalName="dst_axi" xd:direction="out" xd:interfaceRef="dst_axi" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="dst_axi.last" xd:originalName="dst_axi" xd:direction="out" xd:interfaceRef="dst_axi" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="dst_axi.id" xd:originalName="dst_axi" xd:direction="out" xd:interfaceRef="dst_axi" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="dst_axi.dest" xd:originalName="dst_axi" xd:direction="out" xd:interfaceRef="dst_axi" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:latencyEstimates xd:best-case="77529" xd:worst-case="324722" xd:average-case="undef"/>
+  <xd:resourceEstimates xd:LUT="7504" xd:FF="6600" xd:BRAM="8" xd:DSP="52"/>
+</xd:acceleratorMap>

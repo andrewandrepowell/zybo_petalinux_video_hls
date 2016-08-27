@@ -1,0 +1,214 @@
+
+
+================================================================
+== Vivado HLS Report for 'filt'
+================================================================
+* Date:           Fri Aug 26 09:20:28 2016
+
+* Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
+* Project:        filt_hls_proj
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z010clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  20.00|     16.96|        2.50|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-------+--------+-------+--------+----------+
+    |     Latency    |    Interval    | Pipeline |
+    |  min  |   max  |  min  |   max  |   Type   |
+    +-------+--------+-------+--------+----------+
+    |  77529|  324722|  77522|  324722| dataflow |
+    +-------+--------+-------+--------+----------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------------------+-----------------------------+-------+--------+-------+--------+---------+
+        |                                          |                             |     Latency    |    Interval    | Pipeline|
+        |                 Instance                 |            Module           |  min  |   max  |  min  |   max  |   Type  |
+        +------------------------------------------+-----------------------------+-------+--------+-------+--------+---------+
+        |stg_51_filt_Block_codeRepl42_proc_fu_408  |filt_Block_codeRepl42_proc   |      0|       0|      0|       0|   none  |
+        |grp_filt_AXIvideo2Mat_fu_302              |filt_AXIvideo2Mat            |      3|   77763|      3|   77763|   none  |
+        |grp_filt_Split_240_320_6144_0_s_fu_352    |filt_Split_240_320_6144_0_s  |      1|   77521|      1|   77521|   none  |
+        |grp_filt_Merge_240_320_0_4096_s_fu_378    |filt_Merge_240_320_0_4096_s  |  77521|   77521|  77521|   77521|   none  |
+        |grp_filt_AddS_fu_388                      |filt_AddS                    |  77521|   77521|  77521|   77521|   none  |
+        |grp_filt_Split_240_320_4096_0_s_fu_398    |filt_Split_240_320_4096_0_s  |  77521|   77521|  77521|   77521|   none  |
+        |grp_filt_Merge_240_320_0_6144_s_fu_366    |filt_Merge_240_320_0_6144_s  |  77521|   77521|  77521|   77521|   none  |
+        |grp_filt_Resize_fu_286                    |filt_Resize                  |     46|  324721|     46|  324721|   none  |
+        |grp_filt_Mat2AXIvideo_fu_328              |filt_Mat2AXIvideo            |      1|  308641|      1|  308641|   none  |
+        +------------------------------------------+-----------------------------+-------+--------+-------+--------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+-------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF  |  LUT  |
++-----------------+---------+-------+-------+-------+
+|DSP              |        -|      -|      -|      -|
+|Expression       |        -|      -|      -|      -|
+|FIFO             |        0|      -|    167|    678|
+|Instance         |        8|     52|   6426|   6826|
+|Memory           |        -|      -|      -|      -|
+|Multiplexer      |        -|      -|      -|      -|
+|Register         |        -|      -|      7|      -|
++-----------------+---------+-------+-------+-------+
+|Total            |        8|     52|   6600|   7504|
++-----------------+---------+-------+-------+-------+
+|Available        |      120|     80|  35200|  17600|
++-----------------+---------+-------+-------+-------+
+|Utilization (%)  |        6|     65|     18|     42|
++-----------------+---------+-------+-------+-------+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------+-----------------------------+---------+-------+------+------+
+    |            Instance           |            Module           | BRAM_18K| DSP48E|  FF  |  LUT |
+    +-------------------------------+-----------------------------+---------+-------+------+------+
+    |filt_AXIvideo2Mat_U0           |filt_AXIvideo2Mat            |        0|      0|   255|   261|
+    |filt_AddS_U0                   |filt_AddS                    |        0|      0|    33|    49|
+    |filt_Block_codeRepl42_proc_U0  |filt_Block_codeRepl42_proc   |        0|      0|     2|     5|
+    |filt_CONTROL_BUS_s_axi_U       |filt_CONTROL_BUS_s_axi       |        0|      0|    36|    40|
+    |filt_Mat2AXIvideo_U0           |filt_Mat2AXIvideo            |        0|      0|    71|    72|
+    |filt_Merge_240_320_0_4096_U0   |filt_Merge_240_320_0_4096_s  |        0|      0|    33|    49|
+    |filt_Merge_240_320_0_6144_U0   |filt_Merge_240_320_0_6144_s  |        0|      0|    33|    51|
+    |filt_Resize_U0                 |filt_Resize                  |        8|     52|  5878|  6196|
+    |filt_Split_240_320_4096_0_U0   |filt_Split_240_320_4096_0_s  |        0|      0|    33|    49|
+    |filt_Split_240_320_6144_0_U0   |filt_Split_240_320_6144_0_s  |        0|      0|    52|    54|
+    +-------------------------------+-----------------------------+---------+-------+------+------+
+    |Total                          |                             |        8|     52|  6426|  6826|
+    +-------------------------------+-----------------------------+---------+-------+------+------+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +-------------------------------+---------+---+----+------+-----+---------+
+    |              Name             | BRAM_18K| FF| LUT| Depth| Bits| Size:D*B|
+    +-------------------------------+---------+---+----+------+-----+---------+
+    |dst_chs_0_data_stream_0_V_U    |        0|  5|  20|     1|    8|        8|
+    |dst_chs_1_data_stream_0_V_U    |        0|  5|  20|     1|    8|        8|
+    |dst_chs_2_data_stream_0_V_U    |        0|  5|  20|     1|    8|        8|
+    |dst_mat_cols_V_channel64_U     |        0|  5|  23|     1|   11|       11|
+    |dst_mat_cols_V_channel_U       |        0|  6|  24|     7|   11|       77|
+    |dst_mat_data_stream_0_V_U      |        0|  5|  20|     1|    8|        8|
+    |dst_mat_data_stream_1_V_U      |        0|  5|  20|     1|    8|        8|
+    |dst_mat_data_stream_2_V_U      |        0|  5|  20|     1|    8|        8|
+    |dst_mat_data_stream_3_V_U      |        0|  5|  20|     1|    8|        8|
+    |dst_mat_rows_V_channel63_U     |        0|  5|  22|     1|   10|       10|
+    |dst_mat_rows_V_channel_U       |        0|  6|  23|     7|   10|       70|
+    |fin_mat_data_stream_0_V_U      |        0|  5|  20|     1|    8|        8|
+    |fin_mat_data_stream_1_V_U      |        0|  5|  20|     1|    8|        8|
+    |fin_mat_data_stream_2_V_U      |        0|  5|  20|     1|    8|        8|
+    |fin_mat_data_stream_3_V_U      |        0|  5|  20|     1|    8|        8|
+    |src_chs_0_data_stream_0_V_U    |        0|  5|  20|     1|    8|        8|
+    |src_chs_1_data_stream_0_V_U    |        0|  5|  20|     1|    8|        8|
+    |src_chs_2_data_stream_0_V_U    |        0|  5|  20|     1|    8|        8|
+    |src_chs_3_data_stream_0_V_U    |        0|  5|  20|     1|    8|        8|
+    |src_mat_cols_V_channel62_U     |        0|  5|  22|     1|   10|       10|
+    |src_mat_cols_V_channel_U       |        0|  5|  22|     1|   10|       10|
+    |src_mat_data_stream_0_V_U      |        0|  5|  20|     1|    8|        8|
+    |src_mat_data_stream_1_V_U      |        0|  5|  20|     1|    8|        8|
+    |src_mat_data_stream_2_V_U      |        0|  5|  20|     1|    8|        8|
+    |src_mat_data_stream_3_V_U      |        0|  5|  20|     1|    8|        8|
+    |src_mat_rows_V_channel61_U     |        0|  5|  21|     1|    9|        9|
+    |src_mat_rows_V_channel_U       |        0|  5|  21|     1|    9|        9|
+    |wrk_dst_mat_data_stream_0_V_U  |        0|  5|  20|     1|    8|        8|
+    |wrk_dst_mat_data_stream_1_V_U  |        0|  5|  20|     1|    8|        8|
+    |wrk_dst_mat_data_stream_2_V_U  |        0|  5|  20|     1|    8|        8|
+    |wrk_src_mat_data_stream_0_V_U  |        0|  5|  20|     1|    8|        8|
+    |wrk_src_mat_data_stream_1_V_U  |        0|  5|  20|     1|    8|        8|
+    |wrk_src_mat_data_stream_2_V_U  |        0|  5|  20|     1|    8|        8|
+    +-------------------------------+---------+---+----+------+-----+---------+
+    |Total                          |        0|167| 678|    45|  280|      406|
+    +-------------------------------+---------+---+----+------+-----+---------+
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    +---------------------------------------+---+----+-----+-----------+
+    |                  Name                 | FF| LUT| Bits| Const Bits|
+    +---------------------------------------+---+----+-----+-----------+
+    |filt_AddS_U0_ap_start                  |  1|   0|    1|          0|
+    |filt_Mat2AXIvideo_U0_ap_start          |  1|   0|    1|          0|
+    |filt_Merge_240_320_0_4096_U0_ap_start  |  1|   0|    1|          0|
+    |filt_Merge_240_320_0_6144_U0_ap_start  |  1|   0|    1|          0|
+    |filt_Resize_U0_ap_start                |  1|   0|    1|          0|
+    |filt_Split_240_320_4096_0_U0_ap_start  |  1|   0|    1|          0|
+    |filt_Split_240_320_6144_0_U0_ap_start  |  1|   0|    1|          0|
+    +---------------------------------------+---+----+-----+-----------+
+    |Total                                  |  7|   0|    7|          0|
+    +---------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |      Source Object     |    C Type    |
++---------------------------+-----+-----+------------+------------------------+--------------+
+|s_axi_CONTROL_BUS_AWVALID  |  in |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_AWREADY  | out |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_AWADDR   |  in |    4|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_WVALID   |  in |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_WREADY   | out |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_WDATA    |  in |   32|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_WSTRB    |  in |    4|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_ARVALID  |  in |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_ARREADY  | out |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_ARADDR   |  in |    4|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_RVALID   | out |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_RREADY   |  in |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_RDATA    | out |   32|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_RRESP    | out |    2|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_BVALID   | out |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_BREADY   |  in |    1|    s_axi   |       CONTROL_BUS      |  return void |
+|s_axi_CONTROL_BUS_BRESP    | out |    2|    s_axi   |       CONTROL_BUS      |  return void |
+|ap_clk                     |  in |    1| ap_ctrl_hs |          filt          | return value |
+|ap_rst_n                   |  in |    1| ap_ctrl_hs |          filt          | return value |
+|interrupt                  | out |    1| ap_ctrl_hs |          filt          | return value |
+|src_axi_TDATA              |  in |   32|    axis    |  INPUT_STREAM_V_data_V |    pointer   |
+|src_axi_TKEEP              |  in |    4|    axis    |  INPUT_STREAM_V_keep_V |    pointer   |
+|src_axi_TSTRB              |  in |    4|    axis    |  INPUT_STREAM_V_strb_V |    pointer   |
+|src_axi_TUSER              |  in |    1|    axis    |  INPUT_STREAM_V_user_V |    pointer   |
+|src_axi_TLAST              |  in |    1|    axis    |  INPUT_STREAM_V_last_V |    pointer   |
+|src_axi_TID                |  in |    1|    axis    |   INPUT_STREAM_V_id_V  |    pointer   |
+|src_axi_TDEST              |  in |    1|    axis    |  INPUT_STREAM_V_dest_V |    pointer   |
+|src_axi_TVALID             |  in |    1|    axis    |  INPUT_STREAM_V_dest_V |    pointer   |
+|src_axi_TREADY             | out |    1|    axis    |  INPUT_STREAM_V_dest_V |    pointer   |
+|dst_axi_TDATA              | out |   32|    axis    | OUTPUT_STREAM_V_data_V |    pointer   |
+|dst_axi_TKEEP              | out |    4|    axis    | OUTPUT_STREAM_V_keep_V |    pointer   |
+|dst_axi_TSTRB              | out |    4|    axis    | OUTPUT_STREAM_V_strb_V |    pointer   |
+|dst_axi_TUSER              | out |    1|    axis    | OUTPUT_STREAM_V_user_V |    pointer   |
+|dst_axi_TLAST              | out |    1|    axis    | OUTPUT_STREAM_V_last_V |    pointer   |
+|dst_axi_TID                | out |    1|    axis    |  OUTPUT_STREAM_V_id_V  |    pointer   |
+|dst_axi_TDEST              | out |    1|    axis    | OUTPUT_STREAM_V_dest_V |    pointer   |
+|dst_axi_TVALID             | out |    1|    axis    | OUTPUT_STREAM_V_dest_V |    pointer   |
+|dst_axi_TREADY             |  in |    1|    axis    | OUTPUT_STREAM_V_dest_V |    pointer   |
++---------------------------+-----+-----+------------+------------------------+--------------+
+

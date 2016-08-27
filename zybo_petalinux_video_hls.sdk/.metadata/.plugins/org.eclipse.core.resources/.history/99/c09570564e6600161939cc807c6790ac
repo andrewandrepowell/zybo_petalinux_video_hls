@@ -1,0 +1,26 @@
+#ifndef LINUXGPIO_H_
+#define LINUXGPIO_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <poll.h>
+#include <stdexcept>
+
+class linuxgpio
+{
+public:
+	linuxgpio( uint32_t base );
+	~linuxgpio();
+	void set_direction( uint32_t mask, uint32_t direction );
+private:
+	int base;
+};
+
+#endif
